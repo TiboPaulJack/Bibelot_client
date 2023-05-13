@@ -42,13 +42,14 @@ export default function Register(props) {
 
     // Send the data to the API
     register(formData).then((response) => {
+      if(response.ok) {
+        setModalContent(`You have been registered successfully !
+        Welcome to the community ${pseudo}  !`);
+        setShowModal(true);
+      }
     });
     
     form.reset();
-    
-    setModalContent(`You have been registered successfully !
- Welcome to the community ${pseudo}  !`);
-    setShowModal(true);
     
   };
 
