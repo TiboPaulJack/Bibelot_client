@@ -1,0 +1,28 @@
+
+
+.modal{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26vw;
+    z-index: 20;
+    height: 23vh;
+    background-color: white;
+    box-shadow: 7px 7px black;
+    border: 3px black solid;
+}
+
+.modal p{
+    text-align: center;
+}
+
+
+
+.modalOn {
+    background-color: rgba(48, 49, 50, 0.59);
+}

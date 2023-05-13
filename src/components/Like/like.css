@@ -1,0 +1,58 @@
+
+
+
+.like__container{
+    display: flex;
+    flex-direction: row;
+    align-content: baseline;
+    height: 15px;
+    position: relative;
+    top: 7px;
+    left: 25px;
+
+
+}
+
+.like__number{
+    margin-left: 5px;
+    font-weight: 300;
+    color: #000;
+    font-size: 0.9em;
+    align-self: baseline;
+}
+
+.like__icon{
+    display: flex;
+    margin-left: 5px;
+    cursor: pointer;
+    align-content: center;
+}
+.like__icon-svg{
+    width: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    align-self: center;
+    background-image: url("../../assets/icons8-aimer.svg");
+}
+
+/*liked icon*/
+.liked{
+    width: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    align-self: center;
+    background-image: url("../../assets/icons8-aime-rempli-20.svg");
+}
+
+
+.like__icon-svg.isLoading{
+    fill: #eee;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+    cursor: none;
+}

@@ -1,0 +1,28 @@
+
+
+.productFilter{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2%;
+
+}
+
+.productFilter select {
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-weight: 400;
+    cursor: pointer;
+    outline: none;
+}
+
+select #category{
+
+
+
+}
+
+select #sort{
+
+}

@@ -1,0 +1,65 @@
+.productCard.isLoading{
+
+    border: #eee solid 1px;
+    background: var(--bg-color);
+    overflow: hidden;
+    cursor: none;
+}.productCard.isLoading:hover{
+    transform: none;
+    box-shadow: none;
+ }
+.card__image.isLoading{
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+    cursor: none;
+
+    overflow: hidden;
+
+}
+.card__image-img.isLoading{
+
+    cursor: none;
+   /* background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+
+    aspect-ratio: 1/1;
+    min-width: 119px;*/
+}
+
+.card__infos-title.isLoading{
+    min-height: 10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    min-width: 60px;
+
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+
+}
+
+.card__infos-author.isLoading{
+
+    min-height: 10px;
+    min-width: 50px;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+ }
+
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}

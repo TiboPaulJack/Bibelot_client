@@ -1,0 +1,183 @@
+
+.auth{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-around;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
+    height: 90%;
+
+}
+
+legend{
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
+    --line-height:  1.5rem;
+}
+
+.register__form__title,
+.login__form__title{
+    position: fixed;
+
+    top: 12vh;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.login{
+    border-left: black 2px solid;
+    height: 100%;
+    background-color: var(--Jungle-Green);
+    opacity: 0.7;
+}
+.spanAccount{
+    display: none;
+    cursor: pointer;
+}
+.spanAccount:hover{
+    text-decoration: underline;
+}
+
+.register{
+    height: 100%;
+    background-color: var(--Matisse-Blue);
+    opacity: 0.7;
+}
+.register:hover, .login:hover{
+    opacity: 1;
+}
+
+.login, .register{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    height: 100%;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.auth input{
+    width: 25vw;
+    margin: auto auto 10px;
+    height: 30px;
+    border-radius: 5px;
+    border: black 1px solid;
+    padding-left: 10px;
+    font-size: 15px;
+    background-color: var(--Citrine-White);
+}
+
+
+.register input[type="file"]{
+    margin-top: 5px;
+    background-color: #F4F4F0;
+    border: none;
+    font-size: 15px;
+}
+
+.login button, .register button{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: black 1px solid;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.login button:hover{
+    background-color:  var(--Matisse-Blue);
+    color: black;
+    transform: translate(-0.25rem, -0.25rem);
+    box-shadow: 0.25rem 0.25rem 0 black;
+    opacity: 1;
+}
+.register button:hover{
+    background-color: var(--Jungle-Green) ;
+    color: black;
+    transform: translate(-0.25rem, -0.25rem);
+    box-shadow: 0.25rem 0.25rem 0 black;
+    opacity: 1;
+}
+
+.register label, .login label{
+    font-size: 0.6em;
+    font-weight: 300;
+    margin: 0;
+    text-align: left;
+    align-self: start;
+}
+
+.register label{
+    color: white;
+}
+
+
+
+.hidden{
+    display: none;
+}
+
+
+@media (max-width: 1000px) {
+
+    .spanAccount{
+        display: initial;
+    }
+    .login input{
+        width: 100%;
+    }
+    .register input{
+        width: 120%;
+    }
+    .login button{
+        width: calc(100% + 12px)
+    }
+    .register button{
+        width: calc(120% + 12px);
+    }
+
+    .register{
+        display: none;
+
+    }
+    .register:not(:hover){
+
+    }
+    .login:not(:hover) {
+
+    }
+    .register form{
+    }
+    .register label{
+    }
+    .register button{
+    }
+    .auth{
+    }
+
+    .visible {
+        display:flex;
+        width: 100%;
+
+        margin: auto;
+    }
+    .login{
+        width: 100%;
+        border: none;
+    }
+
+}

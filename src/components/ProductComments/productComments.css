@@ -1,0 +1,90 @@
+/*-----------------AddList --------------*/
+
+
+
+.productComments{
+    overflow: scroll;
+
+}
+/*-----------------AddComments --------------*/
+
+.commentAdd{
+    position: sticky !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+
+
+    border: #2F65A0 1px solid;
+
+}
+.commentAdd__box-button{
+    text-align: center;
+
+    margin: auto 20px auto auto;
+}
+.commentAdd__box-button button{
+    height: 30px;
+    background-color: #2F65A0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    font-size: 0.6em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.commentAdd__avatar{
+    width: fit-content;
+    height: 50px;
+    margin: auto auto auto 1%;
+
+}
+.commentAdd__avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.commentAdd__input{
+    width: 70%;
+    height: 100%;
+
+}
+.commentAdd__input input{
+    width: 100%;
+    height: 100%;
+
+}
+
+/*-----------------Comments --------------*/
+
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80px;
+    border-bottom: black 1px solid;
+
+}
+.comment__infos{
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    margin-top: 2%;
+    align-items: baseline;
+    gap: 20px;
+}
+.comment__date{
+    color: gray;
+    font-size: 0.8em;
+}
+.comment__content{
+    margin: auto 0 auto 10%;
+}

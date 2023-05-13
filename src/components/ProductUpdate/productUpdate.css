@@ -1,0 +1,33 @@
+
+button.deleteModelConfirm__close{
+    position: relative;
+    left: 90%;
+    top: 5%;
+    width: 10%;
+    height: 30px;
+    border-radius: 5px;
+    border: black 1px solid;
+    background-color: black;
+    font-size: 0.8em;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 2vh;
+
+}
+
+
+
+.productUpdate__button{
+    margin-top: 5vh;
+    height: 30px;
+    border-radius: 5px;
+    border: black 1px solid;
+    background-color: black;
+    font-size: 0.8em;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 2vh;
+
+}

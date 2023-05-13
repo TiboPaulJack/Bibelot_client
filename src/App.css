@@ -1,0 +1,68 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,700&display=swap');
+
+
+:root {
+    --bg-color: #F4F4F0;
+    --text-color: #212121;
+    --typewriterSpeed: 6s;
+    --typewriterCharacters: 17;
+    --box-shadow: 5px 5px #212121;
+    --box-border: 2px black solid;
+    --input-background: var(--bg-color);
+
+    --Portage-Glue: #91A8ED;
+    --Citrine-White: #EFEDE4;
+    --Woodland-Green: #5E8330;
+    --Jungle-Green: #24A094;
+    --Matisse-Blue: #2F65A0;
+    --Starship-Yellow: #CED02E;
+    --Coral-Red: #F25F5C;
+    --heliotrope-violet: #995AC3;
+}
+
+[data-theme="dark"]{
+    --bg-color: rgba(128, 126, 121, 0.86);
+    --box-border: 4px black solid;
+    --box-shadow: 8px 8px black;
+    --text-color: #cfcfcf;
+}
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'belfastgrotesk-blackregular', sans-serif;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/*delete button, links, and lists default styles */
+button, a, ul, li, input{
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    list-style: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    outline: inherit;
+}
+
+
+
+.App, #root{
+    width: 100%;
+    height: 100%;
+}
+
+#root{
+    overflow: hidden;
+}
+
