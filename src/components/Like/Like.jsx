@@ -1,7 +1,7 @@
 import "./like.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../../App.jsx";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 export default function Like({liked, likes, isLoading, id, setLikesCount }) {
   
@@ -13,7 +13,7 @@ export default function Like({liked, likes, isLoading, id, setLikesCount }) {
 
   const like = () => {
     
-      fetch(baseHost + `/likes/${id}`, {
+      fetch(baseApi + `/likes/${id}`, {
         method: "POST",
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,

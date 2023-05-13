@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import UserUpdateForm from "./UserUpdateForm.jsx";
 import UserDeleteConfirm from "../UserDelete/UserDeleteConfirm.jsx";
 import { UserContext } from "../../App.jsx";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function UserUpdate({ rendered, userData, setRefresh, refresh }) {
@@ -27,7 +27,7 @@ export default function UserUpdate({ rendered, userData, setRefresh, refresh }) 
       form.append(key, formData[key]);
     }
     
-    fetch(baseHost + `/user/update`, {
+    fetch(baseApi + `/user/update`, {
       method: "PATCH",
       body: form,
       headers: {

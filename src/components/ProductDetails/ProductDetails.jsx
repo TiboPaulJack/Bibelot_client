@@ -6,7 +6,7 @@ import ProductComments from "../ProductComments/ProductComments.jsx";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 export default function ProductDetails() {
   const [productDetail, setProductDetail] = useState([]);
@@ -60,7 +60,7 @@ export default function ProductDetails() {
 
   const handleDownload = async () => {
     if (download) {
-      const response = await fetch(baseHost + `/model/glb/${id}`);
+      const response = await fetch(baseApi + `/model/glb/${id}`);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
 

@@ -9,7 +9,7 @@ import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
 import bufferToUrl from "../../utils/BufferToUrl.js";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 export default function UserPage() {
   
@@ -23,7 +23,7 @@ export default function UserPage() {
   
   
   useEffect(() => {
-    fetch(baseHost + `/user/info`, {
+    fetch(baseApi + `/user/info`, {
       method: "GET",
       headers: {
         "authorization": `Bearer ${localStorage.getItem("token")} `,

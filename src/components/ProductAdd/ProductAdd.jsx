@@ -1,5 +1,5 @@
 import './productAdd.css'
-import BaseHost from "../../assets/baseHost.js";
+import BaseHost from "../../assets/baseApi.js";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import { createPortal } from "react-dom";

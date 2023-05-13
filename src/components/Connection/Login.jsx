@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import { UserContext } from "../../App.jsx";
 import { useNavigate } from "react-router-dom";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function Login(props) {
@@ -19,7 +19,7 @@ export default function Login(props) {
     // Convert the formData to a URLSearchParams object
     const form = new URLSearchParams(formData);
     try {
-      const response = await fetch(baseHost + "/user/signin", {
+      const response = await fetch(baseApi + "/user/signin", {
         method: "POST",
         body: form,
       });

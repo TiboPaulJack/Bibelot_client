@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../App.jsx";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function UserDeleteConfirm({ setDeleteConfirm }) {
@@ -12,7 +12,7 @@ export default function UserDeleteConfirm({ setDeleteConfirm }) {
     e.preventDefault();
     
    
-    fetch(baseHost + `/user/delete/${userId}`, {
+    fetch(baseApi + `/user/delete/${userId}`, {
       method: "DELETE",
       headers: {
         'authorization': `Bearer ${ localStorage.getItem( "token" ) } `,

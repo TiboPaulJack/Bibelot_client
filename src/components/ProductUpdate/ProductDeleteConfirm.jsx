@@ -1,4 +1,4 @@
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";

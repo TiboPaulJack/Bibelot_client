@@ -1,7 +1,7 @@
 import './productList.css'
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import { useContext, useEffect, useState } from "react";
-import BaseHost from "../../assets/baseHost.js";
+import BaseHost from "../../assets/baseApi.js";
 
 
 export default function ProductList({ filter }) {

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import "./productUpdate.css";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 export default function ProductUpdate({ rendered, id, setRefresh }) {
   
@@ -23,7 +23,7 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
     }
 
     
-    fetch(baseHost + `/model/${id}`, {
+    fetch(baseApi + `/model/${id}`, {
       method: "PATCH",
       headers: {
         'content-type': 'application/json',

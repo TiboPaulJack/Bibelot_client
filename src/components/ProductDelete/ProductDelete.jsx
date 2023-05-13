@@ -1,6 +1,6 @@
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductDelete(props) {
@@ -14,7 +14,7 @@ export default function ProductDelete(props) {
   const productDelete = (id) => {
     
     
-    fetch(baseHost + `/model/${id}`, {
+    fetch(baseApi + `/model/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")} `,

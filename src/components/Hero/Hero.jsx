@@ -1,5 +1,5 @@
 import './hero.css'
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default function Hero() {
       return;
     }
     
-    fetch(baseHost + `/model/search?search=${value}`)
+    fetch(baseApi + `/model/search?search=${value}`)
       .then(res => res.json())
       .then(data => {
         setSearchResults(data)

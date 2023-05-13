@@ -1,4 +1,4 @@
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../App.jsx";
@@ -12,7 +12,7 @@ export default function CommentAdd({ freshComment }) {
   const addComment = () => {
     freshComment(newComment);
     document.getElementById("inputComment").value = "";
-    fetch(baseHost + "/comments", {
+    fetch(baseApi + "/comments", {
       method: "POST",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),

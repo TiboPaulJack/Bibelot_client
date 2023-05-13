@@ -1,5 +1,5 @@
 
-const baseApi = "https://projet-biblio-3d-production.up.railway.app/api"
 
+const baseApi = 'https://bibelot.herokuapp.com/api';
 
-export default baseApi
+export default baseApi;

@@ -1,7 +1,7 @@
-import baseHost from "../assets/baseHost.js";
+import baseApi from "../assets/baseApi.js";
 
 export function tokenCheck () {
-  return fetch(baseHost + "/user/check", {
+  return fetch(baseApi + "/user/check", {
     method: "POST",
     headers: {
       "authorization": "Bearer " + localStorage.getItem("token"),

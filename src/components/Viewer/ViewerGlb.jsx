@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useParams } from "react-router-dom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import BaseHost from "../../assets/baseHost.js";
+import BaseHost from "../../assets/baseApi.js";
 
 
 // import fetch from 'node-fetch';

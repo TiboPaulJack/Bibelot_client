@@ -2,7 +2,7 @@ import Comment from "./Comment.jsx";
 import './productComments.css'
 import CommentAdd from "./CommentAdd.jsx";
 import { useEffect, useState } from "react";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductComments({ id }) {
@@ -17,7 +17,7 @@ export default function ProductComments({ id }) {
   }, [setComments]);
 
   const getComments = () => {
-    fetch(baseHost + `/comments/${id}`, {
+    fetch(baseApi + `/comments/${id}`, {
       method: "GET",
     })
       .then((res) => res.json())

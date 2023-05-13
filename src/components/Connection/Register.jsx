@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
-import baseHost from "../../assets/baseHost.js";
+import baseApi from "../../assets/baseApi.js";
 
 export default function Register(props) {
 
@@ -13,7 +13,7 @@ export default function Register(props) {
   const register = async (data) => {
 
     try {
-      const response = await fetch(baseHost + "/user/add", {
+      const response = await fetch(baseApi + "/user/add", {
         method: "POST",
         body: data
       });
