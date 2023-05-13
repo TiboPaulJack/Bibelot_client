@@ -3,8 +3,7 @@ import './productPage.css'
 import ProductFilter from "../ProductFilter/ProductFilter.jsx";
 import ProductList from "../ProductList/ProductList.jsx";
 import { useEffect, useState } from "react";
-const BaseHost = process.env.baseApi;
-
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductPage() {
@@ -14,7 +13,7 @@ export default function ProductPage() {
   
   
   useEffect(() => {
-    fetch(BaseHost + '/category', {
+    fetch(baseApi + '/category', {
       method: "GET",
     }).then((res) => res.json()
     ).then((data) => setCategories(data))

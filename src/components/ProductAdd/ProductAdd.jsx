@@ -1,5 +1,5 @@
 import './productAdd.css'
-import BaseHost from "../../assets/baseApi.js";
+import baseApi from "../../assets/baseApi.js";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import { createPortal } from "react-dom";
@@ -15,7 +15,7 @@ export default function ProductAdd (props)  {
   const { rendered } = props;
   
   useEffect(() => {
-    fetch(BaseHost + '/category', {
+    fetch(baseApi + '/category', {
       method: "GET",
     }).then((res) => res.json()
     ).then((data) => setCategories(data))
@@ -23,7 +23,7 @@ export default function ProductAdd (props)  {
   
   
   const AddProduct = (formData) => {
-    fetch(`${BaseHost}/model/add`, {
+    fetch(`${baseApi}/model/add`, {
       method: "POST",
       headers: {
         'authorization': `Bearer ${localStorage.getItem("token")} `,

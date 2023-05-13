@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useParams } from "react-router-dom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import BaseHost from "../../assets/baseApi.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 // import fetch from 'node-fetch';
@@ -65,7 +65,7 @@ const ViewerGlb = ({ setIsLoaded }) => {
     // Charger le modèle 3D
     const loadModel = async () => {
       try {
-        const response = await fetch(BaseHost + `/model/glb/${id}`, {
+        const response = await fetch(baseApi + `/model/glb/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

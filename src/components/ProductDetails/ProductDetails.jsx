@@ -44,7 +44,7 @@ export default function ProductDetails() {
   }, [modelFormat, setModelFormat]);
 
   const productDetails = () => {
-    fetch(BaseHost + `/model/data/${id}`, {
+    fetch(baseApi + `/model/data/${id}`, {
       method: "GET",
     })
       .then((res) => res.json())

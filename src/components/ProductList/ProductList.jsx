@@ -1,7 +1,7 @@
 import './productList.css'
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import { useContext, useEffect, useState } from "react";
-import BaseHost from "../../assets/baseApi.js";
+import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductList({ filter }) {
@@ -10,7 +10,7 @@ export default function ProductList({ filter }) {
   
   useEffect( () => {
     
-    let url = BaseHost + "/model";
+    let url = baseApi + "/model";
     if (filter !== "") {
       url += `?category=${filter}`;
     }
