@@ -3,13 +3,13 @@ import Header from "../Header/Header.jsx";
 import UserBanner from "./UserBanner.jsx";
 import UserProducts from "./UserProducts.jsx";
 import { useContext, useEffect, useState } from "react";
-import UserUpdate from "../UserUpdate/UserUptate.jsx";
+import UserUpdate from "../UserUpdate/UserUdtate.jsx";
 import ProductAdd from "../ProductAdd/ProductAdd.jsx";
 import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
-import bufferToUrl from "../../utils/BufferToUrl.js";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";
 import baseApi from "../../assets/baseApi.js";
+import S3GetObject from "../../utils/S3GetObject.js";
 
 export default function UserPage() {
   
@@ -36,9 +36,8 @@ export default function UserPage() {
         window.location = "/";
       }
     }).then((data) => {
-      data.userProfil.picture = bufferToUrl(data.userProfil.picture.data)
-      setUserData(data.userProfil);
-      setUserProducts(data.allModel);
+      setUserData(data.user);
+      setUserProducts(data.model);
       setRefresh(false)
     }).catch((error) => {
       console.error(error);
