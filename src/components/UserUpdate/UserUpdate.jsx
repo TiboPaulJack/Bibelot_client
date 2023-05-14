@@ -23,7 +23,7 @@ export default function UserUpdate({ rendered, userData, setRefresh, refresh }) 
       return
     }
     
-    if(formData.picture !== undefined){
+    if(formData.picture.length !== 0){
       const file = formData.picture
       formData.picture = await uploadFile(file)
     }

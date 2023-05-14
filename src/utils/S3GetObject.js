@@ -22,7 +22,7 @@ async function uploadFile(file) {
      const response = await client.send( command );
      const data = await response.Body.getReader().read();
      const blob = new Blob([data.value], { type: response.ContentType });
-     return await URL.createObjectURL(blob);
+     return URL.createObjectURL( blob );
   } catch (error) {
     console.log("S3 ERROR",error)
   }

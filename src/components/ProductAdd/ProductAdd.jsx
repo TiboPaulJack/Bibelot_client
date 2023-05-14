@@ -4,9 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
+import s3PutObject from "../../utils/S3PutObject.js";
 
 
 export default function ProductAdd (props)  {
+  
+  // TODO : Refactor => Create new component for the form
   
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -26,6 +29,7 @@ export default function ProductAdd (props)  {
     fetch(`${baseApi}/model/add`, {
       method: "POST",
       headers: {
+        'content-type': 'multipart/form-data',
         'authorization': `Bearer ${localStorage.getItem("token")} `,
       },
       body: formData,
@@ -40,6 +44,15 @@ export default function ProductAdd (props)  {
     rendered("UserProducts")
   }
   
+  const saveFilesToS3 = async (formData) => {
+    const data = formData.get("data");
+    const picture = formData.get("picture");
+    const dataKey = await s3PutObject(data);
+    const pictureKey = await s3PutObject(picture);
+    await formData.set("data", dataKey);
+    await formData.set("picture", pictureKey);
+  }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -51,7 +64,7 @@ export default function ProductAdd (props)  {
       setModalContent("Please add at least one tag");
       setShowModal(true);
     }else{
-    AddProduct(formData);
+    saveFilesToS3( formData ).then( (formData)  => AddProduct(formData));
     }
   }
   

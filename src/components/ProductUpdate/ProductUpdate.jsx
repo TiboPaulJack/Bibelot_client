@@ -21,7 +21,6 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
         filteredData[key] = value;
       }
     }
-
     
     fetch(baseApi + `/model/${id}`, {
       method: "PATCH",
@@ -49,7 +48,6 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
     const tagInput = document.getElementById("tag");
     setTags([...tags, tagInput.value]);
     tagInput.value = "";
-    
   }
   
   

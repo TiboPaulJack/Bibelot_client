@@ -32,7 +32,7 @@ async function uploadFile(file) {
   } catch (error) {
     console.log(error)
   } finally {
-    // finally.
+    console.log("file uploaded to s3")
   }
 }
 

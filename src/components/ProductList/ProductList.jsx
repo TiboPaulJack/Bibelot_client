@@ -2,6 +2,7 @@ import './productList.css'
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import { useContext, useEffect, useState } from "react";
 import baseApi from "../../assets/baseApi.js";
+import s3GetObject from "../../utils/S3GetObject.js";
 
 
 export default function ProductList({ filter }) {
@@ -23,9 +24,9 @@ export default function ProductList({ filter }) {
       .then((response) => response.json())
       .then((data) => {
         return data.map((item) => {
-          const pics = new Uint8Array(item.picture.data);
-          const blob = new Blob([pics], { type: "image/png" });
-          item.picture = URL.createObjectURL(blob);
+          s3GetObject(item.picture).then((url) => {
+            item.picture = url;
+          });
           return item;
         });
       })

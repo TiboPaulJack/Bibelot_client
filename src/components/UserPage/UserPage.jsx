@@ -3,7 +3,7 @@ import Header from "../Header/Header.jsx";
 import UserBanner from "./UserBanner.jsx";
 import UserProducts from "./UserProducts.jsx";
 import { useContext, useEffect, useState } from "react";
-import UserUpdate from "../UserUpdate/UserUdtate.jsx";
+import UserUpdate from "../UserUpdate/UserUpdate.jsx";
 import ProductAdd from "../ProductAdd/ProductAdd.jsx";
 import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
