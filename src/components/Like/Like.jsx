@@ -1,12 +1,12 @@
 import "./like.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../../App.jsx";
-import baseApi from "../../assets/baseApi.js";
 
 export default function Like({liked, likes, isLoading, id, setLikesCount }) {
   
   const [isLiked, setIsLiked] = useState(liked);
   const { logged } = useContext(UserContext);
+  const baseApi = import.meta.env.BASE_API
   
   
   

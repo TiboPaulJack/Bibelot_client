@@ -1,8 +1,9 @@
 import "./productCard.css";
 import "./productCardLoading.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Like from "../Like/Like.jsx";
+import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductCard(props) {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ export default function ProductCard(props) {
   const [likesCount, setLikesCount] = useState(props.like);
   const tags = props.tags;
   const id = props.id;
-  
   
 
   const handleClick = () => {

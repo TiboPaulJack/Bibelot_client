@@ -53,10 +53,8 @@ function App() {
   }
   
   const userCheck = () => {
-    tokenCheck().then(res => {
-      setUserId(res.user.id)
-      setUser(res.user.pseudo)
-    });
+    tokenCheck()
+    
   }
   
   const setSideBar = () => {

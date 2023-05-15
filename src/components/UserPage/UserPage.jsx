@@ -3,23 +3,24 @@ import Header from "../Header/Header.jsx";
 import UserBanner from "./UserBanner.jsx";
 import UserProducts from "./UserProducts.jsx";
 import { useContext, useEffect, useState } from "react";
-import UserUpdate from "../UserUpdate/UserUptate.jsx";
+import UserUpdate from "../UserUpdate/UserUpdate.jsx";
 import ProductAdd from "../ProductAdd/ProductAdd.jsx";
 import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
-import bufferToUrl from "../../utils/BufferToUrl.js";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";
-import baseApi from "../../assets/baseApi.js";
+import Loader from "../Loader/Loader.jsx";
 
 export default function UserPage() {
   
   const { logout } = useContext(UserContext);
+  const baseApi = import.meta.env.BASE_API
   
   const [userData, setUserData] = useState({});
   const [userProducts, setUserProducts] = useState([]);
   const [rendered, setRendered] = useState("UserProducts");
   const [selectedId, setSelectedId] = useState(0);
   const [refresh, setRefresh] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
   
   useEffect(() => {
@@ -36,9 +37,8 @@ export default function UserPage() {
         window.location = "/";
       }
     }).then((data) => {
-      data.userProfil.picture = bufferToUrl(data.userProfil.picture.data)
-      setUserData(data.userProfil);
-      setUserProducts(data.allModel);
+      setUserData(data.user);
+      setUserProducts(data.model);
       setRefresh(false)
     }).catch((error) => {
       console.error(error);
@@ -55,56 +55,58 @@ export default function UserPage() {
   }
   
   
-  
   return (
     <>
       <Header rendered={handleRendered} />
       <div className="userPage">
-        <UserBanner rendered={handleRendered}
-                    userData={userData}
-        />
+        <UserBanner rendered={handleRendered} userData={userData} />
         <div className="userPage__main">
-          {rendered === "UserProducts"
-            &&
-            <UserProducts rendered={handleRendered}
-                          setRendered={setRendered}
-                          userProducts={userProducts}
-                          setUserProducts={setUserProducts}
-                          setSelectedId={handleSelectedId}
-            />}
-          {rendered === "UserUpdate"
-            &&
-            <UserUpdate rendered={handleRendered}
-                        userData={userData}
-                        setRefresh={setRefresh}
-                        refresh={refresh}
-            />}
-          {rendered === "ProductAdd"
-            &&
-            <ProductAdd rendered={handleRendered}
-                        setRefresh={setRefresh}
-                        refresh={refresh}
-            />}
-          {rendered === "ProductUpdate"
-            &&
-            <ProductUpdate rendered={handleRendered}
-                           id={selectedId}
-                           setRefresh={setRefresh}
-                           refresh={refresh}
-                           
+          {isLoading ? <Loader /> :
+            rendered === "UserProducts" && (
+              <UserProducts
+                rendered={handleRendered}
+                setRendered={setRendered}
+                userProducts={userProducts}
+                setUserProducts={setUserProducts}
+                setSelectedId={handleSelectedId}
+              />
+            )}
+          {rendered === "UserUpdate" && (
+            <UserUpdate
+              rendered={handleRendered}
+              userData={userData}
+              setRefresh={setRefresh}
+              refresh={refresh}
             />
-          }
-          {rendered === "ProductDelete"
-            &&
-            <ProductDelete  rendered={handleRendered}
-                            id={selectedId}
-                            setRefresh={setRefresh}
-                            refresh={refresh}
-            />}
-          
+          )}
+          {rendered === "ProductAdd" && (
+            <ProductAdd
+              rendered={handleRendered}
+              setRefresh={setRefresh}
+              refresh={refresh}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+          )}
+          {rendered === "ProductUpdate" && (
+            <ProductUpdate
+              rendered={handleRendered}
+              id={selectedId}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
+          )}
+          {rendered === "ProductDelete" && (
+            <ProductDelete
+              rendered={handleRendered}
+              id={selectedId}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
+          )}
         </div>
       </div>
-      
     </>
   );
+  
 }

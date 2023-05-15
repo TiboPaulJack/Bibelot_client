@@ -1,14 +1,15 @@
 import {useContext, useState} from "react";
 import { UserContext } from "../../App.jsx";
 import { useNavigate } from "react-router-dom";
-import baseApi from "../../assets/baseApi.js";
 
 
 export default function Login(props) {
+  
   const { logged, setLogged } = useContext(UserContext);
   const { user, setUser } = useContext(UserContext);
   const { userId, setUserId } = useContext(UserContext);
   const { logout } = useContext(UserContext);
+  const baseApi = import.meta.env.BASE_API
 
   const navigate = useNavigate();
   const { smallScreenRegister, setSmallScreenRegister } = props
@@ -17,6 +18,7 @@ export default function Login(props) {
 
   const login = async (formData) => {
     // Convert the formData to a URLSearchParams object
+    
     const form = new URLSearchParams(formData);
     try {
       const response = await fetch(baseApi + "/user/signin", {
@@ -25,7 +27,6 @@ export default function Login(props) {
       });
       const data = await response.json();
       if (response.status === 200) {
-        console.log(data)
         setLogged(true);
         setUserId(data.userId);
         setUser(data.pseudo);
@@ -34,7 +35,6 @@ export default function Login(props) {
         setInterval(() => {
           logout()
         } , 60 * 60 * 1000) // 1 hour
-        console.log("user ID AT LOGGIN ", userId)
       }
     } catch (error) {
       console.log("error :", error.status, error.message);

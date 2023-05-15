@@ -1,5 +1,4 @@
 import './hero.css'
-import baseApi from "../../assets/baseApi.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
   
+  const baseApi = import.meta.env.BASE_API
   const [searchResults, setSearchResults] = useState([])
   const navigate = useNavigate()
   

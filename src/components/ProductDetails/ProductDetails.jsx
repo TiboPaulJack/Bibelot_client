@@ -6,17 +6,20 @@ import ProductComments from "../ProductComments/ProductComments.jsx";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-import baseApi from "../../assets/baseApi.js";
+import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductDetails() {
-  const [productDetail, setProductDetail] = useState([]);
+  
+  const baseApi = import.meta.env.BASE_API
+  const [productDetail, setProductDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-  const [modelFormat, setModelFormat] = useState("model/obj");
+  const [progress, setProgress] = useState(0);
   
   if(/\/\d+$/.test(location.pathname)) {
     document.getElementById('root').style.overflow = 'scroll';
   }
-
+  
+  
   const setLoaded = () => {
     setIsLoaded(false);
   };
@@ -25,6 +28,7 @@ export default function ProductDetails() {
     name,
     format,
     download,
+    data,
     size,
     description,
     pseudo,
@@ -32,6 +36,7 @@ export default function ProductDetails() {
     comments,
     tags,
   } = productDetail;
+  
 
   const id = useParams().id;
 
@@ -39,9 +44,7 @@ export default function ProductDetails() {
     window.scrollTo(0, 0);
     productDetails();
   }, []);
-
-  useEffect(() => {
-  }, [modelFormat, setModelFormat]);
+  
 
   const productDetails = () => {
     fetch(baseApi + `/model/data/${id}`, {
@@ -49,9 +52,6 @@ export default function ProductDetails() {
     })
       .then((res) => res.json())
       .then((data) => setProductDetail(data))
-      .finally(() => {
-        setModelFormat(format);
-      });
   };
 
   const bitesToMb = (bites) => {
@@ -60,10 +60,7 @@ export default function ProductDetails() {
 
   const handleDownload = async () => {
     if (download) {
-      const response = await fetch(baseApi + `/model/glb/${id}`);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
+      const url = await s3GetObject(data);
       const link = document.createElement("a");
       link.href = url;
       link.type = "model/gltf-binary";
@@ -80,10 +77,15 @@ export default function ProductDetails() {
         <div className="productDetails__top">
           <div className="model3d" id="canvasContainer">
             <div className="loaderDiv" id="loader">
-              {!isLoaded && <Loader />}
+              {!isLoaded && <Loader progress={progress} />}
             </div>
             
-              <ViewerGlb setIsLoaded={setIsLoaded} />
+            {productDetail &&
+              <ViewerGlb
+                setIsLoaded={ setIsLoaded }
+                data={ data }
+                setProgress={ setProgress }
+            /> }
             
           </div>
           <div className="productDetails__infos">
@@ -93,7 +95,7 @@ export default function ProductDetails() {
             </div>
             <div className="infos__format">
               Format
-              <span className="infos__format--content">{".Glb"}</span>
+              <span className="infos__format--content">{format}</span>
             </div>
             <div className="infos__size">
               Size

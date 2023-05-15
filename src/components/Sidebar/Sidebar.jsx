@@ -23,7 +23,12 @@ export default function Sidebar() {
     setSideBar();
     navigate("/models");
   }
-
+  
+  const handleClickLogin = () => {
+    setSideBar();
+    navigate("/auth");
+  }
+  
   const handleClickLogout = () => {
     setSideBar();
     logout();
@@ -39,6 +44,9 @@ export default function Sidebar() {
         </li>
         <li className="sidebar__list-item" onClick={handleClickModels}>
           Models
+        </li>
+        <li className="sidebar__list-item" onClick={handleClickLogin}>
+          Login
         </li>
         <li className="sidebar__list-item" onClick={handleClickLogout}>
           Logout

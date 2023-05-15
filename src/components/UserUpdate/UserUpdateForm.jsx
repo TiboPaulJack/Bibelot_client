@@ -10,11 +10,6 @@ export default function UserUpdateForm({ rendered, userData, setDeleteConfirm, s
     updateUser(formData)
       rendered("UserProducts");
     };
-    
-  
-  
-  
-  
   
   return (
     <>

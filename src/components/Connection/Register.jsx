@@ -2,13 +2,13 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
-import baseApi from "../../assets/baseApi.js";
 
 export default function Register(props) {
 
     const { smallScreenRegister, setSmallScreenRegister } = props
     const { showModal, setShowModal } = useContext(UserContext);
     const { modalContent, setModalContent } = useContext(UserContext);
+    const baseApi = import.meta.env.BASE_API
 
   const register = async (data) => {
 
