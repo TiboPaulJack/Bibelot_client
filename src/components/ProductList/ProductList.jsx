@@ -40,7 +40,6 @@ export default function ProductList({ filter }) {
       })
       .then((updatedCards) => {
         setCards(updatedCards);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -85,6 +84,7 @@ export default function ProductList({ filter }) {
               liked={ card.liked }
               url={ card.picture }
               isLoading={ isLoading }
+              setIsLoading={ setIsLoading }
             />
           )
         )}

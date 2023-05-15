@@ -4,9 +4,11 @@ import UserUpdateForm from "./UserUpdateForm.jsx";
 import UserDeleteConfirm from "../UserDelete/UserDeleteConfirm.jsx";
 import { UserContext } from "../../App.jsx";
 import uploadFile from "../../utils/S3PutObject.js";
-
+import Resizer from "react-image-file-resizer";
+import deleteFile from "../../utils/S3DeleteObject.js";
 
 export default function UserUpdate({ rendered, userData, setRefresh, refresh }) {
+  
   
   const baseApi = import.meta.env.VITE_BASE_API
   const { logout } = useContext(UserContext)
@@ -19,20 +21,20 @@ export default function UserUpdate({ rendered, userData, setRefresh, refresh }) 
   
   const UpdateUser = async (formData) => {
     
-    if (Object.entries(formData).length === 0) {
+    
+    if(Object.entries(formData).length === 0) {
       return
     }
-    
     if(formData.picture.length !== 0){
+      await deleteFile(userData.picture)
       const file = formData.picture
       formData.picture = await uploadFile(file)
     }
-    
     fetch(baseApi + `/user/update`, {
       method: "PATCH",
       headers: {
         'content-type': 'application/json',
-        'authorization': `Bearer ${localStorage.getItem("token")} `,
+        'authorization': `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(formData),
     }).then((res) => {
@@ -43,8 +45,8 @@ export default function UserUpdate({ rendered, userData, setRefresh, refresh }) 
       else if(res.status !== 200){
         console.error(res.status, res.message)
       }
-    } )
-  }
+    })
+  };
   
   
   return (

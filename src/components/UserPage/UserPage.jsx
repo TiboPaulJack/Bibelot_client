@@ -27,7 +27,7 @@ export default function UserPage() {
     fetch(baseApi + `/user/info`, {
       method: "GET",
       headers: {
-        "authorization": `Bearer ${localStorage.getItem("token")} `,
+        "authorization": `Bearer ${localStorage.getItem("token")}`,
       }
     }).then((res) => {
       if (res.status === 200) {
@@ -37,6 +37,8 @@ export default function UserPage() {
         window.location = "/";
       }
     }).then((data) => {
+      const test = data.model.find(element => element.id ===61)
+      console.log("data", test.picture)
       setUserData(data.user);
       setUserProducts(data.model);
       setRefresh(false)
@@ -102,6 +104,7 @@ export default function UserPage() {
               id={selectedId}
               setRefresh={setRefresh}
               refresh={refresh}
+              data={userProducts}
             />
           )}
         </div>

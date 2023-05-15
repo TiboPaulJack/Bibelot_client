@@ -2,7 +2,7 @@ import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 
-async function getFile( file) {
+async function deleteFile( file) {
   
   const client = new S3Client({region: "eu-west-3", credentials: {
       accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
@@ -12,7 +12,6 @@ async function getFile( file) {
   const input = {
     Bucket: import.meta.env.VITE_AWS_BUCKET_NAME,
     Key: file,
-    label: "original"
   };
   const command = new DeleteObjectCommand(input);
   
@@ -23,4 +22,4 @@ async function getFile( file) {
   }
 }
 
-export default getFile;
+export default deleteFile;

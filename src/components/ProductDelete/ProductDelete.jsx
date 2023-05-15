@@ -1,5 +1,6 @@
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
+import deleteFile from "../../utils/S3DeleteObject.js";
 
 
 export default function ProductDelete(props) {
@@ -9,7 +10,13 @@ export default function ProductDelete(props) {
   const id = props.id;
   const rendered = props.rendered;
   const { setRefresh } = props;
+  const data = props.data;
   
+  const deleteFromS3 = async (id) => {
+    const obj = data.find(element => element.id === id)
+    await deleteFile(obj.data)
+    await deleteFile(obj.picture)
+  }
 
   const productDelete = (id) => {
     
@@ -22,7 +29,7 @@ export default function ProductDelete(props) {
     }).then((res) => {
       setRefresh(true);
       if (res.status === 200) {
-        return res.json();
+        return deleteFromS3( id )
       } else if (res.status === 401) {
         logout();
         window.location = "/";
