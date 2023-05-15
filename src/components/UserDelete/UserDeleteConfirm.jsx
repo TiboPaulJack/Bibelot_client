@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../../App.jsx";
-import baseApi from "../../assets/baseApi.js";
 
 
 export default function UserDeleteConfirm({ setDeleteConfirm }) {
   
+  const baseApi = import.meta.env.BASE_API
   const { userId } = useContext(UserContext)
   
   

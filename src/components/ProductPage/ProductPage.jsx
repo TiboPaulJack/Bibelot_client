@@ -3,11 +3,11 @@ import './productPage.css'
 import ProductFilter from "../ProductFilter/ProductFilter.jsx";
 import ProductList from "../ProductList/ProductList.jsx";
 import { useEffect, useState } from "react";
-import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductPage() {
   
+  const baseApi = import.meta.env.BASE_API
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("");
   

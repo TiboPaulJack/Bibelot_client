@@ -8,13 +8,12 @@ import ProductAdd from "../ProductAdd/ProductAdd.jsx";
 import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";
-import baseApi from "../../assets/baseApi.js";
-import S3GetObject from "../../utils/S3GetObject.js";
 import Loader from "../Loader/Loader.jsx";
 
 export default function UserPage() {
   
   const { logout } = useContext(UserContext);
+  const baseApi = import.meta.env.BASE_API
   
   const [userData, setUserData] = useState({});
   const [userProducts, setUserProducts] = useState([]);

@@ -3,12 +3,12 @@ import { useContext, useState } from "react";
 import UserUpdateForm from "./UserUpdateForm.jsx";
 import UserDeleteConfirm from "../UserDelete/UserDeleteConfirm.jsx";
 import { UserContext } from "../../App.jsx";
-import baseApi from "../../assets/baseApi.js";
 import uploadFile from "../../utils/S3PutObject.js";
 
 
 export default function UserUpdate({ rendered, userData, setRefresh, refresh }) {
   
+  const baseApi = import.meta.env.BASE_API
   const { logout } = useContext(UserContext)
   const [DeleteConfirm, setDeleteConfirm] = useState(false)
   const [_, setForm] = useState({})

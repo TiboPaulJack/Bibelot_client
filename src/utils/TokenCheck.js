@@ -1,6 +1,8 @@
-import baseApi from "../assets/baseApi.js";
 
 export function tokenCheck () {
+  
+  const baseApi = import.meta.env.BASE_API
+  
   return fetch(baseApi + "/user/check", {
     method: "POST",
     headers: {

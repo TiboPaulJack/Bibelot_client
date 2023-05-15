@@ -1,17 +1,16 @@
 import './productAdd.css'
-import baseApi from "../../assets/baseApi.js";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 import s3PutObject from "../../utils/S3PutObject.js";
-import Loader from "../Loader/Loader.jsx";
 
 
 export default function ProductAdd (props)  {
   
   // TODO : Refactor => Create new component for the form
   
+  const baseApi = import.meta.env.BASE_API
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const { logout, setModalContent, setShowModal, showModal } = useContext(UserContext);

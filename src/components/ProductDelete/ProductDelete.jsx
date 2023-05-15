@@ -1,11 +1,11 @@
 import { UserContext } from "../../App.jsx";
 import { useContext } from "react";
-import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductDelete(props) {
-  const { logout } = useContext(UserContext);
   
+  const { logout } = useContext(UserContext);
+  const baseApi = import.meta.env.BASE_API
   const id = props.id;
   const rendered = props.rendered;
   const { setRefresh } = props;

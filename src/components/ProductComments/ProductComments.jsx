@@ -2,10 +2,11 @@ import Comment from "./Comment.jsx";
 import './productComments.css'
 import CommentAdd from "./CommentAdd.jsx";
 import { useEffect, useState } from "react";
-import baseApi from "../../assets/baseApi.js";
 
 
 export default function ProductComments({ id }) {
+  
+  const baseApi = import.meta.env.BASE_URL
   const [comments, setComments] = useState([]);
   
   const freshComment = (comment) => {

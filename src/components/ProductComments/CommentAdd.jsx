@@ -1,13 +1,14 @@
-import baseApi from "../../assets/baseApi.js";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../App.jsx";
 
 
 export default function CommentAdd({ freshComment }) {
+  
   const [newComment, setNewComment] = useState({});
   const { logged } = useContext(UserContext);
   const modelId = useParams().id;
+  const baseApi = import.meta.env.BASE_API
 
   const addComment = () => {
     freshComment(newComment);

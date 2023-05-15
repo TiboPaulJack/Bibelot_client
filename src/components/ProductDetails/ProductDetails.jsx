@@ -6,9 +6,11 @@ import ProductComments from "../ProductComments/ProductComments.jsx";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-import baseApi from "../../assets/baseApi.js";
+import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductDetails() {
+  
+  const baseApi = import.meta.env.BASE_API
   const [productDetail, setProductDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -58,10 +60,7 @@ export default function ProductDetails() {
 
   const handleDownload = async () => {
     if (download) {
-      const response = await fetch(baseApi + `/model/glb/${id}`);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
+      const url = await s3GetObject(data);
       const link = document.createElement("a");
       link.href = url;
       link.type = "model/gltf-binary";

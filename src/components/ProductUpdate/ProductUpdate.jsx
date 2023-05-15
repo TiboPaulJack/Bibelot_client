@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import "./productUpdate.css";
-import baseApi from "../../assets/baseApi.js";
 
 export default function ProductUpdate({ rendered, id, setRefresh }) {
   
   // todo : FETCH TAGS TO DISPLAY CURRENT TAGS IN THE INPUT
-  
+  const baseApi = import.meta.env.BASE_API
   const logout = useContext(UserContext).logout;
   const [tags, setTags] = useState([]);
 

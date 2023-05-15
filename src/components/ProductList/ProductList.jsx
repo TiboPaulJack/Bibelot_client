@@ -1,11 +1,13 @@
 import './productList.css'
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import { useEffect, useState } from "react";
-import baseApi from "../../assets/baseApi.js";
 import s3GetObject from "../../utils/S3GetObject.js";
 
 
+
 export default function ProductList({ filter }) {
+  
+  const baseApi = import.meta.env.BASE_API
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
