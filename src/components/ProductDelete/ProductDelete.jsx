@@ -5,7 +5,7 @@ import { useContext } from "react";
 export default function ProductDelete(props) {
   
   const { logout } = useContext(UserContext);
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const id = props.id;
   const rendered = props.rendered;
   const { setRefresh } = props;

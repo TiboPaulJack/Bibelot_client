@@ -8,7 +8,7 @@ export default function Register(props) {
     const { smallScreenRegister, setSmallScreenRegister } = props
     const { showModal, setShowModal } = useContext(UserContext);
     const { modalContent, setModalContent } = useContext(UserContext);
-    const baseApi = import.meta.env.BASE_API
+    const baseApi = import.meta.env.VITE_BASE_API
 
   const register = async (data) => {
 

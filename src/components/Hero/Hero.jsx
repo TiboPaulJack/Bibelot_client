@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const [searchResults, setSearchResults] = useState([])
   const navigate = useNavigate()
   

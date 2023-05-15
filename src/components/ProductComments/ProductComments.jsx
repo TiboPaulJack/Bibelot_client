@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function ProductComments({ id }) {
   
-  const baseApi = import.meta.env.BASE_URL
+  const baseApi = import.meta.env.VITE_BASE_API
   const [comments, setComments] = useState([]);
   
   const freshComment = (comment) => {

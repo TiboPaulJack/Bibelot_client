@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function ProductPage() {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("");
   

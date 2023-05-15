@@ -8,7 +8,7 @@ export default function CommentAdd({ freshComment }) {
   const [newComment, setNewComment] = useState({});
   const { logged } = useContext(UserContext);
   const modelId = useParams().id;
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
 
   const addComment = () => {
     freshComment(newComment);

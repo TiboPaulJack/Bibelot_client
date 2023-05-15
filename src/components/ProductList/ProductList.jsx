@@ -7,7 +7,7 @@ import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductList({ filter }) {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   

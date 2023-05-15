@@ -9,15 +9,15 @@ export default function Login(props) {
   const { user, setUser } = useContext(UserContext);
   const { userId, setUserId } = useContext(UserContext);
   const { logout } = useContext(UserContext);
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
 
   const navigate = useNavigate();
   const { smallScreenRegister, setSmallScreenRegister } = props
   
-  
 
   const login = async (formData) => {
-    // Convert the formData to a URLSearchParams object
+    
+    console.log(baseApi)
     
     const form = new URLSearchParams(formData);
     try {
