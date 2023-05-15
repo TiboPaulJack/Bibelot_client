@@ -3,9 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useParams } from "react-router-dom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import baseApi from "../../assets/baseApi.js";
 import s3GetObject from "../../utils/S3GetObject.js";
-import S3GetObject from "../../utils/S3GetObject.js";
 
 const ViewerGlb = ({ setIsLoaded, data, setProgress }) => {
   

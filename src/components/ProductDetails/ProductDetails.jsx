@@ -10,7 +10,7 @@ import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductDetails() {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const [productDetail, setProductDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [progress, setProgress] = useState(0);

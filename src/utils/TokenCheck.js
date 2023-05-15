@@ -1,7 +1,7 @@
 
 export function tokenCheck () {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   
   return fetch(baseApi + "/user/check", {
     method: "POST",

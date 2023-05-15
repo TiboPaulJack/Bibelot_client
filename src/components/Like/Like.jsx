@@ -6,7 +6,7 @@ export default function Like({liked, likes, isLoading, id, setLikesCount }) {
   
   const [isLiked, setIsLiked] = useState(liked);
   const { logged } = useContext(UserContext);
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   
   
   

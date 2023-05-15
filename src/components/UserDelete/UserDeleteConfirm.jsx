@@ -4,7 +4,7 @@ import { UserContext } from "../../App.jsx";
 
 export default function UserDeleteConfirm({ setDeleteConfirm }) {
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const { userId } = useContext(UserContext)
   
   

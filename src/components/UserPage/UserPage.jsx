@@ -13,7 +13,7 @@ import Loader from "../Loader/Loader.jsx";
 export default function UserPage() {
   
   const { logout } = useContext(UserContext);
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   
   const [userData, setUserData] = useState({});
   const [userProducts, setUserProducts] = useState([]);

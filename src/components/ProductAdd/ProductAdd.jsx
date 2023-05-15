@@ -10,7 +10,7 @@ export default function ProductAdd (props)  {
   
   // TODO : Refactor => Create new component for the form
   
-  const baseApi = import.meta.env.BASE_API
+  const baseApi = import.meta.env.VITE_BASE_API
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const { logout, setModalContent, setShowModal, showModal } = useContext(UserContext);
