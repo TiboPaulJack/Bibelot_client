@@ -25,7 +25,6 @@ export default function Login(props) {
       });
       const data = await response.json();
       if (response.status === 200) {
-        console.log(data)
         setLogged(true);
         setUserId(data.userId);
         setUser(data.pseudo);
@@ -34,7 +33,6 @@ export default function Login(props) {
         setInterval(() => {
           logout()
         } , 60 * 60 * 1000) // 1 hour
-        console.log("user ID AT LOGGIN ", userId)
       }
     } catch (error) {
       console.log("error :", error.status, error.message);

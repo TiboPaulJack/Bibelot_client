@@ -1,4 +1,4 @@
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 
@@ -14,12 +14,12 @@ async function getFile( file) {
     Key: file,
     label: "original"
   };
-  const command = new GetObjectCommand(input);
+  const command = new DeleteObjectCommand(input);
   
   try {
-    return await getSignedUrl( client, command, { expiresIn: 3600 } ) // 1 hour
+    return await client.send(command)
   } catch (error) {
-    console.log("S3 ERROR",error)
+    console.log("S3 err",error)
   }
 }
 

@@ -9,14 +9,15 @@ import Loader from "../Loader/Loader.jsx";
 import baseApi from "../../assets/baseApi.js";
 
 export default function ProductDetails() {
-  const [productDetail, setProductDetail] = useState([]);
+  const [productDetail, setProductDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-  const [modelFormat, setModelFormat] = useState("model/obj");
+  const [progress, setProgress] = useState(0);
   
   if(/\/\d+$/.test(location.pathname)) {
     document.getElementById('root').style.overflow = 'scroll';
   }
-
+  
+  
   const setLoaded = () => {
     setIsLoaded(false);
   };
@@ -25,6 +26,7 @@ export default function ProductDetails() {
     name,
     format,
     download,
+    data,
     size,
     description,
     pseudo,
@@ -32,6 +34,7 @@ export default function ProductDetails() {
     comments,
     tags,
   } = productDetail;
+  
 
   const id = useParams().id;
 
@@ -39,9 +42,7 @@ export default function ProductDetails() {
     window.scrollTo(0, 0);
     productDetails();
   }, []);
-
-  useEffect(() => {
-  }, [modelFormat, setModelFormat]);
+  
 
   const productDetails = () => {
     fetch(baseApi + `/model/data/${id}`, {
@@ -49,9 +50,6 @@ export default function ProductDetails() {
     })
       .then((res) => res.json())
       .then((data) => setProductDetail(data))
-      .finally(() => {
-        setModelFormat(format);
-      });
   };
 
   const bitesToMb = (bites) => {
@@ -80,10 +78,15 @@ export default function ProductDetails() {
         <div className="productDetails__top">
           <div className="model3d" id="canvasContainer">
             <div className="loaderDiv" id="loader">
-              {!isLoaded && <Loader />}
+              {!isLoaded && <Loader progress={progress} />}
             </div>
             
-              <ViewerGlb setIsLoaded={setIsLoaded} />
+            {productDetail &&
+              <ViewerGlb
+                setIsLoaded={ setIsLoaded }
+                data={ data }
+                setProgress={ setProgress }
+            /> }
             
           </div>
           <div className="productDetails__infos">
@@ -93,7 +96,7 @@ export default function ProductDetails() {
             </div>
             <div className="infos__format">
               Format
-              <span className="infos__format--content">{".Glb"}</span>
+              <span className="infos__format--content">{format}</span>
             </div>
             <div className="infos__size">
               Size

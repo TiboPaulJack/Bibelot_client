@@ -1,6 +1,6 @@
 import './productList.css'
 import ProductCard from "../ProductCard/ProductCard.jsx";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import baseApi from "../../assets/baseApi.js";
 import s3GetObject from "../../utils/S3GetObject.js";
 
@@ -9,31 +9,44 @@ export default function ProductList({ filter }) {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  useEffect( () => {
-    
+  
+  
+  useEffect(() => {
     let url = baseApi + "/model";
     if (filter !== "") {
       url += `?category=${filter}`;
     }
-
+    
     fetch(url, {
       method: "GET",
       headers: {
         "authorization": `Bearer ${localStorage.getItem("token")}`
-      }})
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
-        return data.map((item) => {
-          s3GetObject(item.picture).then((url) => {
-            item.picture = url;
-          });
-          return item;
+        const promises = [];
+        data.forEach((card) => {
+          promises.push(s3GetObject(card.picture)
+            .then((url) => {
+              card.picture = url;
+              return card;
+            })
+          );
         });
+        return Promise.all(promises);
       })
-      .then((data) => setCards(data))
-      .then(() => setIsLoading(false));
+      .then((updatedCards) => {
+        setCards(updatedCards);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }, [filter]);
 
+  
   return (
     <div className="productList">
       {isLoading &&
@@ -54,24 +67,25 @@ export default function ProductList({ filter }) {
               like={card.like}
               liked={card.liked}
               tags={card.tags}
-              url={card.picture}
               isLoading={isLoading}
             />
           ))}
       {!isLoading &&
-        cards.map((card) => (
-          <ProductCard
-            id={card.id}
-            key={card.id}
-            pseudo={card.pseudo}
-            name={card.name}
-            tags={card.tags}
-            like={card.like}
-            liked={card.liked}
-            url={card.picture}
-            isLoading={isLoading}
-          />
-        ))}
+        cards &&
+          cards.map( ( card ) => (
+            <ProductCard
+              id={ card.id }
+              key={ card.id }
+              pseudo={ card.pseudo }
+              name={ card.name }
+              tags={ card.tags }
+              like={ card.like }
+              liked={ card.liked }
+              url={ card.picture }
+              isLoading={ isLoading }
+            />
+          )
+        )}
     </div>
   );
 }

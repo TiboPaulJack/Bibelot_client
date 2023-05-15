@@ -20,19 +20,17 @@ async function uploadFile(file) {
     Bucket: import.meta.env.VITE_AWS_BUCKET_NAME,
     Key: randomName,
     Body: formData.get('file'),
+    label: file.name,
   };
   
   const command = new PutObjectCommand(input);
   
-  
   try {
-    console.log("send command");
     const data = await client.send(command);
     return input.Key;
   } catch (error) {
     console.log(error)
   } finally {
-    console.log("file uploaded to s3")
   }
 }
 

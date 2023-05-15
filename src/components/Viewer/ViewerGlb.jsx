@@ -1,14 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useParams } from "react-router-dom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import baseApi from "../../assets/baseApi.js";
+import s3GetObject from "../../utils/S3GetObject.js";
+import S3GetObject from "../../utils/S3GetObject.js";
 
-
-// import fetch from 'node-fetch';
-
-const ViewerGlb = ({ setIsLoaded }) => {
+const ViewerGlb = ({ setIsLoaded, data, setProgress }) => {
+  
+  
   const mountRef = useRef(null);
   const { id } = useParams();
 
@@ -64,75 +65,66 @@ const ViewerGlb = ({ setIsLoaded }) => {
 
     // Charger le modèle 3D
     const loadModel = async () => {
-      try {
-        const response = await fetch(baseApi + `/model/glb/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            responseType: "arraybuffer",
-          },
-        });
-        const data = await response.arrayBuffer();
-        const blob = new Blob([data]);
-        const url = URL.createObjectURL(blob);
-
-        //****************************************** *// CREATION DU LOADER
-        const loadingManager = new THREE.LoadingManager();
-        //afficher le laoder durant le chargement
-        loadingManager.onStart = async function (url, itemsLoaded, itemTotal) {
-          const loader = document.getElementById("loader");
-          loader.style.display = "flex";
-        };
-
-        loadingManager.onProgress = function () {};
-        loadingManager.onLoad = function () {
-          const loader = document.getElementById("loader");
-          loader.style.display = "none";
-        };
-
-        //****************************************** *//
-
-        const loader = new GLTFLoader(loadingManager);
-
-        loader.load(
-          url,
-          function (gltf) {
-            //***************************** */ CENTRER LES MODELS AU CHARGEMENT
-            // Récupérer la boîte englobante du modèle chargé
-            const boundingBox = new THREE.Box3().setFromObject(gltf.scene);
-            // Obtenir le centre de la boîte englobante
-            const center = boundingBox.getCenter(new THREE.Vector3());
-            // Déterminer la distance de la caméra à partir du centre de la boîte englobante
-            const distance =
-              boundingBox.getSize(new THREE.Vector3()).length() * 1.2;
-            // Mettre à jour la position de la caméra
-            camera.position.set(center.x, center.y + 0.5, center.z + distance);
-            //*********************************** */
-
-            while (gltf.scene.children.length > 0) {
-              scene.add(gltf.scene.children[0]);
+      
+      if (data) {
+        try {
+          const url = await s3GetObject( data )
+          
+          //* CREATION DU LOADER
+          const loadingManager = new THREE.LoadingManager();
+          //afficher le laoder durant le chargement
+          loadingManager.onStart = async function ( url, itemsLoaded, itemTotal ) {
+            const loader = document.getElementById( "loader" );
+            loader.style.display = "flex";
+          };
+          loadingManager.onProgress = function () {};
+          loadingManager.onLoad = function () {
+            const loader = document.getElementById( "loader" );
+            loader.style.display = "none";
+          };
+          const loader = new GLTFLoader( loadingManager );
+          
+          loader.load(
+            url,
+            function ( gltf ) {
+              //* CENTRER LES MODELS AU CHARGEMENT
+              // Récupérer la boîte englobante du modèle chargé
+              const boundingBox = new THREE.Box3().setFromObject( gltf.scene );
+              // Obtenir le centre de la boîte englobante
+              const center = boundingBox.getCenter( new THREE.Vector3() );
+              // Déterminer la distance de la caméra à partir du centre de la boîte englobante
+              const distance =
+                boundingBox.getSize( new THREE.Vector3() ).length() * 1.2;
+              // Mettre à jour la position de la caméra
+              camera.position.set( center.x, center.y + 0.5, center.z + distance );
+              
+              while (gltf.scene.children.length > 0) {
+                scene.add( gltf.scene.children[0] );
+              }
+              camera.lookAt( boundingBox );
+            },
+            function ( xhr ) {
+              if (xhr.loaded / xhr.total !== 100) {
+                const loader = document.getElementById( "loader" );
+                loader.style.display = "flex";
+                setProgress( Math.round( ( xhr.loaded / xhr.total ) * 100 ) );
+              }
+              if (xhr.loaded / xhr.total === 100) {
+                setIsLoaded( true )
+              }
+            },
+            function ( error ) {
+              console.error( error );
             }
-
-            camera.lookAt(boundingBox);
-          },
-          function (xhr) {
-            if (xhr.loaded / xhr.total !== 100) {
-              const loader = document.getElementById("loader");
-              loader.style.display = "flex";
-            }
-          },
-          function (error) {
-            console.error(error);
-          }
-        );
-      } catch (error) {
-        console.log(error);
+          );
+        } catch (error) {
+          console.log( error );
+        }
       }
     };
-
     loadModel();
-
-    // Mettre en place une boucle de rendu pour la scène Three.js
+    
+    //* Mettre en place une boucle de rendu pour la scène Three.js
     const clock = new THREE.Clock();
     const tick = () => {
       const elapsedTime = clock.getElapsedTime();
@@ -141,10 +133,10 @@ const ViewerGlb = ({ setIsLoaded }) => {
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };
-    //ne pas oublier d'appeler la fonctipon tick
+    
     tick();
 
-    // Gérer le redimensionnement de la fenêtre
+    //* Gérer le redimensionnement de la fenêtre
     const handleResize = () => {
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
@@ -156,9 +148,12 @@ const ViewerGlb = ({ setIsLoaded }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [id]);
-
+    
+  }, [data]);
+  
   return <div ref={mountRef} />;
 };
+
+
 
 export default ViewerGlb;
