@@ -20,7 +20,6 @@ export default function ProductDelete(props) {
 
   const productDelete = (id) => {
     
-    
     fetch(baseApi + `/model/${id}`, {
       method: "DELETE",
       headers: {

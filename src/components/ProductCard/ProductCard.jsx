@@ -19,8 +19,7 @@ export default function ProductCard(props) {
     navigate(`/model/${id}`)
   }
   
-  //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST PRETTE
-  console.log(props.url)
+  //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST CHARGEE
   if(props.url !== undefined) {
     setIsLoading(false);
   }

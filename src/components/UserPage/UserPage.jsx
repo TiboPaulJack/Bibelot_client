@@ -37,8 +37,7 @@ export default function UserPage() {
         window.location = "/";
       }
     }).then((data) => {
-      const test = data.model.find(element => element.id ===61)
-      console.log("data", test.picture)
+      console.log(data)
       setUserData(data.user);
       setUserProducts(data.model);
       setRefresh(false)
