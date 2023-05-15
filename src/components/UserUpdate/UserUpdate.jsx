@@ -4,7 +4,6 @@ import UserUpdateForm from "./UserUpdateForm.jsx";
 import UserDeleteConfirm from "../UserDelete/UserDeleteConfirm.jsx";
 import { UserContext } from "../../App.jsx";
 import uploadFile from "../../utils/S3PutObject.js";
-import Resizer from "react-image-file-resizer";
 import deleteFile from "../../utils/S3DeleteObject.js";
 
 export default function UserUpdate({ rendered, userData, setRefresh, refresh }) {

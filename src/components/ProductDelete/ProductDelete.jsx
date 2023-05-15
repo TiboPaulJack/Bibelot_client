@@ -18,6 +18,7 @@ export default function ProductDelete(props) {
     await deleteFile(obj.picture)
   }
 
+  // TODO : VERIFIER POURQUOI LA PHOTO NE SE SUPPRIME PAS DE S3
   const productDelete = (id) => {
     
     fetch(baseApi + `/model/${id}`, {
@@ -27,7 +28,7 @@ export default function ProductDelete(props) {
       },
     }).then((res) => {
       setRefresh(true);
-      if (res.status === 200) {
+      if (res.status === 204) {
         return deleteFromS3( id )
       } else if (res.status === 401) {
         logout();

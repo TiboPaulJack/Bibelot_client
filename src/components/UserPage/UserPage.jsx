@@ -37,7 +37,6 @@ export default function UserPage() {
         window.location = "/";
       }
     }).then((data) => {
-      console.log(data)
       setUserData(data.user);
       setUserProducts(data.model);
       setRefresh(false)
