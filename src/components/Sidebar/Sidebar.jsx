@@ -9,10 +9,8 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { setSideBar } = useContext(UserContext);
   const { sideBarActive } = useContext(UserContext);
+  const { logged } = useContext(UserContext);
 
-  const handleClick = () => {
-    setSideBar();
-  }
 
   const handleClickProfile = () => {
     setSideBar();
@@ -39,18 +37,19 @@ export default function Sidebar() {
     <div className={sideBarActive ? "sidebar active" : "sidebar"}>
 
       <ul className="sidebar__list">
-        <li className="sidebar__list-item" onClick={handleClickProfile}>
+        {logged && <li className="sidebar__list-item" onClick={ handleClickProfile }>
           Profile
-        </li>
+        </li> }
         <li className="sidebar__list-item" onClick={handleClickModels}>
           Models
         </li>
-        <li className="sidebar__list-item" onClick={handleClickLogin}>
+        {!logged ? <li className="sidebar__list-item" onClick={ handleClickLogin }>
           Login
+        </li> :
+          <li className="sidebar__list-item" onClick={ handleClickLogout }>
+        Logout
         </li>
-        <li className="sidebar__list-item" onClick={handleClickLogout}>
-          Logout
-        </li>
+        }
         <li className="sidebar__list-item">Help</li>
         <li className="sidebar__list-item">About</li>
         <li className="sidebar__list-item">Privacy Policy</li>
