@@ -21,6 +21,7 @@
 
     .homePage {
       min-height: 90svh;
+      overflow: hidden;
     }
 
   }
