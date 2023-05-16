@@ -17,13 +17,6 @@
     height: 90%;
   }
 
-  @supports (height: 100svh) {
-
-    .homePage {
-      min-height: 90svh;
-      overflow: hidden;
-    }
-
   }
-}
+
 
