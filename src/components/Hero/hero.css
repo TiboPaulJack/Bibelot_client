@@ -4,9 +4,8 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    overflow: hidden;
     height: 100%;
-
     background-color: #91A8ED;
 }
 
