@@ -5,15 +5,14 @@
     flex-direction: column;
     border: black solid 1px;
     border-radius: 10px;
-    object-fit: contain;
     cursor: pointer;
     transition: 0.3s;
     box-sizing: border-box;
-    margin: 10px;
     min-width: 100px;
     min-height: 100%;
     max-height: 100%;
     overflow: hidden;
+    -webkit-overflow-scrolling: auto;
 }
 
 .productCard:hover {

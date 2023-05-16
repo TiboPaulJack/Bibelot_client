@@ -34,10 +34,8 @@
 
 body{
     width: 100vw;
-    height: -webkit-fill-available;
     height: var(--app-height);
     font-family: 'belfastgrotesk-blackregular', sans-serif;
-
     background-color: var(--bg-color);
     color: var(--text-color);
     box-sizing: border-box;
