@@ -17,6 +17,7 @@
 
 .productCard:hover{
     transform: translate(-0.25rem, -0.25rem);
+    webkit-transform: translate(-0.25rem, -0.25rem);
     box-shadow: 0.25rem 0.25rem 0 black
 }
 
@@ -108,7 +109,7 @@
 
 /* R E S P O N S I V E */
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
 
 }
 
