@@ -12,6 +12,7 @@
     margin: 10px;
     min-width: 100px;
     min-height: 100%;
+    overflow: hidden;
 }
 
 .productCard:hover{

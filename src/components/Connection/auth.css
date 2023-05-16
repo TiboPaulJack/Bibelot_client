@@ -37,6 +37,7 @@ legend{
     height: 100%;
     background-color: var(--Jungle-Green);
     opacity: 0.7;
+    position: relative;
 }
 .spanAccount{
     display: none;
@@ -46,10 +47,21 @@ legend{
     text-decoration: underline;
 }
 
+.auth form{
+    display: flex;
+    flex-direction: column;
+}
 .register{
     height: 100%;
+    position: relative;
     background-color: var(--Matisse-Blue);
     opacity: 0.7;
+}
+
+.errMessage{
+    position: absolute;
+    z-index: 2;
+    top: 80px;
 }
 .register:hover, .login:hover{
     opacity: 1;
@@ -77,7 +89,9 @@ legend{
     font-size: 15px;
     background-color: var(--Citrine-White);
 }
-
+.auth input.inputError{
+    border: var(--Coral-Red) 2px solid;
+}
 
 .register input[type="file"]{
     margin-top: 5px;
@@ -137,47 +151,53 @@ legend{
     .spanAccount{
         display: initial;
     }
+    .register__form,
+    .login__form{
+        width: 40vw;
+    }
     .login input{
         width: 100%;
     }
     .register input{
-        width: 120%;
+        width: 100%;
     }
     .login button{
         width: calc(100% + 12px)
     }
     .register button{
-        width: calc(120% + 12px);
+        width: calc(100% + 12px);
+    }
+
+    .auth form{
+        width: 100%;
     }
 
     .register{
         display: none;
-
-    }
-    .register:not(:hover){
-
-    }
-    .login:not(:hover) {
-
-    }
-    .register form{
-    }
-    .register label{
-    }
-    .register button{
-    }
-    .auth{
     }
 
     .visible {
         display:flex;
         width: 100%;
-
         margin: auto;
     }
     .login{
         width: 100%;
         border: none;
+    }
+
+
+
+}
+
+@media (max-width: 600px) {
+    .register__form,
+    .login__form{
+        width: 60vw;
+    }
+
+    .errMessage{
+        top: 40px;
     }
 
 }

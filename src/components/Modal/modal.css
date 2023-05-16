@@ -16,13 +16,26 @@
     box-shadow: 7px 7px black;
     border: 3px black solid;
 }
-
 .modal p{
     text-align: center;
 }
-
-
-
 .modalOn {
     background-color: rgba(48, 49, 50, 0.59);
 }
+
+
+@media screen and (max-width: 768px) {
+    .modal{
+        width: 80vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .modal{
+        width: 77vw;
+        height: 34vh;
+    }
+}
+

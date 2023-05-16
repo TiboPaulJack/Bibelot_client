@@ -1,7 +1,4 @@
 import './loader.css';
-import { useState } from "react";
-
-
 
 
 
@@ -14,7 +11,7 @@ export default function Loader({progress}) {
         🌀
       </div>
       <div className="loader__progress">
-        {`${progress} %`}
+        {progress ? ` Loading... ${progress} %` : `Loading...`}
       </div>
     </div>
   )

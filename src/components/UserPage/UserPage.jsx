@@ -61,7 +61,7 @@ export default function UserPage() {
       <div className="userPage">
         <UserBanner rendered={handleRendered} userData={userData} />
         <div className="userPage__main">
-          {isLoading ? <Loader /> :
+          {
             rendered === "UserProducts" && (
               <UserProducts
                 rendered={handleRendered}
@@ -70,7 +70,9 @@ export default function UserPage() {
                 setUserProducts={setUserProducts}
                 setSelectedId={handleSelectedId}
               />
-            )}
+            )
+          }
+          
           {rendered === "UserUpdate" && (
             <UserUpdate
               rendered={handleRendered}
@@ -80,7 +82,10 @@ export default function UserPage() {
               refresh={refresh}
             />
           )}
-          {rendered === "ProductAdd" && (
+        
+          {
+            rendered === "ProductAdd" && (
+              isLoading ? <Loader /> :
             <ProductAdd
               rendered={handleRendered}
               setRefresh={setRefresh}
@@ -106,6 +111,7 @@ export default function UserPage() {
               data={userProducts}
             />
           )}
+        
         </div>
       </div>
     </>

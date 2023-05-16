@@ -8,11 +8,11 @@ const root = document.getElementById("root");
 export default function Modal() {
   const { setShowModal } = useContext(UserContext);
   const { modalContent, setModalContent } = useContext(UserContext);
-
-  const hello =
-    "Hello! This website is only for demonstration purposes yet fully functional." +
-    " For the needs of the server you wont be able to upload large 3d models.  \n" +
-    "Enjoy your visit!";
+  
+  const hello = `Hello!
+This website is only for demonstration purposes yet fully functional.
+For the needs of the server you won't be able to upload large 3D models.
+Enjoy your visit!`;
 
   const closeModal = () => {
     setShowModal(false);

@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 import { UserContext } from "../../App.jsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export default function Register(props) {
 
@@ -9,15 +9,34 @@ export default function Register(props) {
     const { showModal, setShowModal } = useContext(UserContext);
     const { modalContent, setModalContent } = useContext(UserContext);
     const baseApi = import.meta.env.VITE_BASE_API
+    const [errMessage, setErrMessage] = useState("")
+    const [errInput, setErrInput] = useState("")
+  
 
-  const register = async (data) => {
+  const register = async (data, pseudo) => {
 
     try {
       const response = await fetch(baseApi + "/user/add", {
         method: "POST",
         body: data
       });
-      return response.json();
+      if(response.ok) {
+        setModalContent(`You have been registered successfully !
+        Welcome to the community ${pseudo}  !`);
+        setShowModal(true);
+      }
+      return response.json()
+      .then((data) => {
+        if(typeof data === "string") {
+          if(data.includes("pseudo")) {
+            setErrInput("pseudo")
+          }
+          if(data.includes("email")) {
+            setErrInput("email")
+          }
+          setErrMessage(data)
+        }
+      })
     } catch (error) {
       console.log(error);
     }
@@ -34,32 +53,33 @@ export default function Register(props) {
     const passwordConfirm = formData.get("passwordConfirm");
 
     if (password !== passwordConfirm) {
-      alert("Passwords are not the same");
+      setErrInput("password")
+      setErrMessage("Passwords are not the same");
       return;
     }
     // Delete passwordConfirm from the form data
     formData.delete("passwordConfirm");
 
     // Send the data to the API
-    register(formData).then((response) => {
-      if(response.ok) {
-        setModalContent(`You have been registered successfully !
-        Welcome to the community ${pseudo}  !`);
-        setShowModal(true);
-      }
-    });
+    register(formData, pseudo)
     
     form.reset();
     
   };
 
   return (
+    
     <div className={smallScreenRegister ? "register visible" : "register"}>
+      
       {showModal && createPortal(
         <Modal/>,
         document.body
       )}
+      <div className="errMessage">
+        {errMessage}
+      </div>
       <div className="register__form">
+        
         <form onSubmit={handleSubmit}>
           <div className="register__form__input">
             <legend><label htmlFor="firstname">First Name</label></legend>
@@ -75,26 +95,54 @@ export default function Register(props) {
           </div>
           <legend><label htmlFor="pseudo">Username</label></legend>
           <div className="register__form__input">
-            <input type="text"
-                   name="pseudo"
+            <input
+              className=
+                {
+                  errInput === "pseudo"
+                    &&
+                    "inputError"
+                }
+              type="text"
+              name="pseudo"
             />
           </div>
           <legend><label htmlFor="email">Email</label></legend>
           <div className="register__form__input">
-            <input type="text"
-                   name="email"
+            <input
+              className=
+                {
+                  errInput === "email"
+                  &&
+                  "inputError"
+                }
+              type="text"
+              name="email"
             />
           </div>
           <legend><label htmlFor="password">Password</label></legend>
           <div className="register__form__input">
-            <input type="text"
-                   name="password"
+            <input
+              className=
+                {
+                  errInput === "password"
+                  &&
+                  "inputError"
+                }
+              type="password"
+              name="password"
             />
+          
           </div>
           <legend><label htmlFor="passwordConfirm">Confirm Password</label></legend>
           <div className="register__form__input">
             <input
-              type="text"
+              className=
+                {
+                  errInput === "password"
+                  &&
+                  "inputError"
+                }
+              type="password"
               name="passwordConfirm"
             />
           </div>

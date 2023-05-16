@@ -44,13 +44,8 @@
     margin-left: 20px;
 }
 .editProfile{
-
-
     justify-self: right;
-
     width: 10%;
-
-
     align-content: center;
     background-color: black;
     font-size: 0.8em;
@@ -60,6 +55,10 @@
     align-self: center;
     height: 30px;
     border-radius: 5px;
+}
+.editProfile:hover{
+    background-color: var(--Jungle-Green);
+    color: black;
 }
 
 
@@ -115,7 +114,6 @@
 }
 
 .userProducts__Buttons span{
-    border: black 1px solid;
     background-color: black;
     font-size: 0.8em;
     color: white;

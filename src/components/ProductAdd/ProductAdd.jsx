@@ -89,10 +89,10 @@ export default function ProductAdd (props)  {
             <Modal/>,
             document.body
           ) }
-          {isLoading && <button className="productAdd__close"
+          <button className="productAdd__close"
                     onClick={ () => rendered( "UserProducts" ) }>
             X
-          </button> }
+          </button>
           <form className="productAdd__form" onSubmit={ handleSubmit }>
             <label>Product Name</label>
             <input type="text"
