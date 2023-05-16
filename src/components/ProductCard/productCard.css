@@ -12,16 +12,12 @@
     margin: 10px;
     min-width: 100px;
     min-height: 100%;
+    max-height: 100%;
     overflow: hidden;
 }
 
 .productCard:hover {
-    -webkit-translate: translate(-0.25rem, -0.25rem);
-    -moz-translate: translate(-0.25rem, -0.25rem);
-    -ms-translate: translate(-0.25rem, -0.25rem);
-    -o-translate: translate(-0.25rem, -0.25rem);
     transform: translate(-0.25rem, -0.25rem);
-    -webkit-box-shadow: 0.25rem 0.25rem 0 black;
     box-shadow: 0.25rem 0.25rem 0 black;
 }
 
@@ -113,15 +109,4 @@
 
 
 /* R E S P O N S I V E */
-
-/*
-@media (max-width: 1000px) {
-
-    .productCard:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-}
-*/
 
