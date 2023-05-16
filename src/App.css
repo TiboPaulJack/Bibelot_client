@@ -12,6 +12,7 @@
     --box-shadow: 5px 5px #212121;
     --box-border: 2px black solid;
     --input-background: var(--bg-color);
+    --app-height: 100%;
 
     --Portage-Glue: #91A8ED;
     --Citrine-White: #EFEDE4;
