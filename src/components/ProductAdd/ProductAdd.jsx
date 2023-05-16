@@ -61,9 +61,8 @@ export default function ProductAdd (props)  {
     AddProduct(formData);
   }
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
     const formData = new FormData(e.target);
     formData.delete("tag");
     const formattedTags = `{${tags.join(',')}}`;
@@ -72,7 +71,8 @@ export default function ProductAdd (props)  {
       setModalContent("Please add at least one tag");
       setShowModal(true);
     }else{
-    saveFilesToS3(formData)
+      setIsLoading(true)
+      await saveFilesToS3(formData)
     }
   }
   

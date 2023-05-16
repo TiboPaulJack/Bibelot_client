@@ -11,7 +11,7 @@ export default function ProductList({ filter }) {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  
+  console.log(cards)
   
   useEffect(() => {
     let url = baseApi + "/model";
@@ -85,6 +85,7 @@ export default function ProductList({ filter }) {
               liked={ card.liked }
               url={ card.picture }
               isLoading={ isLoading }
+              setIsLoading={ setIsLoading }
             />
           )
         )}

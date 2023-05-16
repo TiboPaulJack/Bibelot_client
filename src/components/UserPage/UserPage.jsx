@@ -27,7 +27,7 @@ export default function UserPage() {
     fetch(baseApi + `/user/info`, {
       method: "GET",
       headers: {
-        "authorization": `Bearer ${localStorage.getItem("token")} `,
+        "authorization": `Bearer ${localStorage.getItem("token")}`,
       }
     }).then((res) => {
       if (res.status === 200) {
@@ -75,6 +75,7 @@ export default function UserPage() {
             <UserUpdate
               rendered={handleRendered}
               userData={userData}
+              userProducts={userProducts}
               setRefresh={setRefresh}
               refresh={refresh}
             />
@@ -102,6 +103,7 @@ export default function UserPage() {
               id={selectedId}
               setRefresh={setRefresh}
               refresh={refresh}
+              data={userProducts}
             />
           )}
         </div>

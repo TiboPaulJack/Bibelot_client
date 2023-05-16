@@ -8,7 +8,7 @@ import s3GetObject from "../../utils/S3GetObject.js";
 export default function ProductCard(props) {
   const navigate = useNavigate();
   
-  const {isLoading} = props;
+  const { isLoading, setIsLoading } = props;
   const [likesCount, setLikesCount] = useState(props.like);
   const tags = props.tags;
   const id = props.id;
@@ -18,7 +18,9 @@ export default function ProductCard(props) {
     !isLoading &&
     navigate(`/model/${id}`)
   }
-
+  
+  //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST CHARGEE
+  
   return (
     <div className={isLoading ? "productCard isLoading" : "productCard"}>
       <div
