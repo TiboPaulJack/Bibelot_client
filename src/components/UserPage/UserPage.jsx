@@ -75,6 +75,7 @@ export default function UserPage() {
             <UserUpdate
               rendered={handleRendered}
               userData={userData}
+              userProducts={userProducts}
               setRefresh={setRefresh}
               refresh={refresh}
             />

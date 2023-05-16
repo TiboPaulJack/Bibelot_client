@@ -20,9 +20,7 @@ export default function ProductCard(props) {
   }
   
   //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST CHARGEE
-  if(props.url !== undefined) {
-    setIsLoading(false);
-  }
+  
   return (
     <div className={isLoading ? "productCard isLoading" : "productCard"}>
       <div

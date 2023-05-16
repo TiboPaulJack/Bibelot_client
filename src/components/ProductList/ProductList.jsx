@@ -11,7 +11,7 @@ export default function ProductList({ filter }) {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  
+  console.log(cards)
   
   useEffect(() => {
     let url = baseApi + "/model";
@@ -40,6 +40,7 @@ export default function ProductList({ filter }) {
       })
       .then((updatedCards) => {
         setCards(updatedCards);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);

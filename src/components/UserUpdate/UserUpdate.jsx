@@ -6,7 +6,7 @@ import { UserContext } from "../../App.jsx";
 import uploadFile from "../../utils/S3PutObject.js";
 import deleteFile from "../../utils/S3DeleteObject.js";
 
-export default function UserUpdate({ rendered, userData, setRefresh, refresh }) {
+export default function UserUpdate({ rendered, userData, setRefresh, userProducts }) {
   
   
   const baseApi = import.meta.env.VITE_BASE_API
@@ -53,7 +53,11 @@ export default function UserUpdate({ rendered, userData, setRefresh, refresh }) 
       {
           DeleteConfirm
           ?
-          <UserDeleteConfirm setDeleteConfirm={setDeleteConfirm} />
+          <UserDeleteConfirm
+            setDeleteConfirm={setDeleteConfirm}
+            userData={userData}
+            userProducts={userProducts}
+          />
           :
           <UserUpdateForm rendered={rendered}
                           setDeleteConfirm={setDeleteConfirm}
