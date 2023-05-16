@@ -17,8 +17,8 @@
 }
 
 .productCard:hover {
-    transform: translate(-0.25rem, -0.25rem);
-    box-shadow: 0.25rem 0.25rem 0 black;
+    transform: translate(-0.25vw, -0.25vw);
+    box-shadow: 0.25vw 0.25vw 0 black;
 }
 
 
