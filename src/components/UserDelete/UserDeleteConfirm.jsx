@@ -3,11 +3,11 @@ import { UserContext } from "../../App.jsx";
 import s3DeleteObject from "../../utils/S3DeleteObject.js";
 
 
-export default function UserDeleteConfirm({ setDeleteConfirm, userProducts }) {
-  
+export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, userData }) {
+
   const baseApi = import.meta.env.VITE_BASE_API
   const { userId } = useContext(UserContext)
-  
+
   const deleteUserDataInS3 = async () => {
     for (const product of userProducts) {
       try {
@@ -16,13 +16,15 @@ export default function UserDeleteConfirm({ setDeleteConfirm, userProducts }) {
       } catch (error) {
         console.error(error);
       }
+      if(userData.picture !== "defaultAvatar.png")
+      await s3DeleteObject(userData.picture)
     }
   };
-  
-  
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     fetch(baseApi + `/user/delete/${userId}`, {
       method: "DELETE",
       headers: {
@@ -37,14 +39,14 @@ export default function UserDeleteConfirm({ setDeleteConfirm, userProducts }) {
           })
         }
       })
-    
+
   }
-  
-  
-  
+
+
+
   return (
     <div className="userDeleteConfirm">
-      
+
       <div className="userDeleteConfirm__title">Delete your Profile</div>
       <button className="userDeleteConfirm__close" onClick={() => setDeleteConfirm(false)}>
         X
