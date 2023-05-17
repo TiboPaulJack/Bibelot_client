@@ -6,7 +6,7 @@ import s3DeleteObject from "../../utils/S3DeleteObject.js";
 export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, userData }) {
 
   const baseApi = import.meta.env.VITE_BASE_API
-  const { userId } = useContext(UserContext)
+  const { userId } = userData.id
 
   const deleteUserDataInS3 = async () => {
     for (const product of userProducts) {
@@ -32,7 +32,7 @@ export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, user
       },
       }).then((res) =>
       {
-        if (res.status === 200) {
+        if (res.status === 203) {
           deleteUserDataInS3().then( () => {
             localStorage.removeItem( "token" )
             window.location = "/"

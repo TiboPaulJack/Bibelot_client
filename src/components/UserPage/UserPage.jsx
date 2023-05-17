@@ -21,7 +21,7 @@ export default function UserPage() {
   const [selectedId, setSelectedId] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  
 
   useEffect(() => {
     fetch(baseApi + `/user/info`, {
