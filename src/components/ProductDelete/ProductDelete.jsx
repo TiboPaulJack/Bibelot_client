@@ -4,14 +4,14 @@ import deleteFile from "../../utils/S3DeleteObject.js";
 
 
 export default function ProductDelete(props) {
-  
+
   const { logout } = useContext(UserContext);
   const baseApi = import.meta.env.VITE_BASE_API
   const id = props.id;
   const rendered = props.rendered;
   const { setRefresh } = props;
   const data = props.data;
-  
+
   const deleteFromS3 = async (id) => {
     const obj = data.find(element => element.id === id)
     await deleteFile(obj.data)
@@ -19,8 +19,9 @@ export default function ProductDelete(props) {
   }
 
   // TODO : VERIFIER POURQUOI LA PHOTO NE SE SUPPRIME PAS DE S3
+  //  IMAGE EST DEJA EN BLOB
   const productDelete = (id) => {
-    
+
     fetch(baseApi + `/model/${id}`, {
       method: "DELETE",
       headers: {
@@ -40,7 +41,7 @@ export default function ProductDelete(props) {
 
   return (
     <div className="productDeleteConfirm">
-      
+
       <button
         className="deleteModelConfirm__close"
         onClick={() => rendered("UserProducts")}

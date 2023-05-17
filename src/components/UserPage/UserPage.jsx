@@ -11,18 +11,18 @@ import ProductDelete from "../ProductDelete/ProductDelete.jsx";
 import Loader from "../Loader/Loader.jsx";
 
 export default function UserPage() {
-  
+
   const { logout } = useContext(UserContext);
   const baseApi = import.meta.env.VITE_BASE_API
-  
+
   const [userData, setUserData] = useState({});
   const [userProducts, setUserProducts] = useState([]);
   const [rendered, setRendered] = useState("UserProducts");
   const [selectedId, setSelectedId] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  
+
+
   useEffect(() => {
     fetch(baseApi + `/user/info`, {
       method: "GET",
@@ -39,27 +39,31 @@ export default function UserPage() {
     }).then((data) => {
       setUserData(data.user);
       setUserProducts(data.model);
+      console.log(userProducts,' userProducts')
       setRefresh(false)
     }).catch((error) => {
       console.error(error);
     });
   }, [setRefresh, refresh]);
-  
-  
-  
+
+
+
   const handleSelectedId = (id) => {
     setSelectedId(id);
   }
   const handleRendered = (componentName) => {
     setRendered(componentName);
   }
-  
-  
+
+
   return (
     <>
       <Header rendered={handleRendered} />
       <div className="userPage">
-        <UserBanner rendered={handleRendered} userData={userData} />
+        <UserBanner
+            rendered={handleRendered}
+            userData={userData}
+        />
         <div className="userPage__main">
           {
             rendered === "UserProducts" && (
@@ -72,7 +76,7 @@ export default function UserPage() {
               />
             )
           }
-          
+
           {rendered === "UserUpdate" && (
             <UserUpdate
               rendered={handleRendered}
@@ -82,7 +86,7 @@ export default function UserPage() {
               refresh={refresh}
             />
           )}
-        
+
           {
             rendered === "ProductAdd" && (
               isLoading ? <Loader /> :
@@ -111,10 +115,10 @@ export default function UserPage() {
               data={userProducts}
             />
           )}
-        
+
         </div>
       </div>
     </>
   );
-  
+
 }

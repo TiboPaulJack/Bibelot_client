@@ -6,19 +6,17 @@ import s3GetObject from "../../utils/S3GetObject.js";
 
 
 export default function ProductList({ filter }) {
-  
+
   const baseApi = import.meta.env.VITE_BASE_API
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  console.log(cards)
-  
+
   useEffect(() => {
     let url = baseApi + "/model";
     if (filter !== "") {
       url += `?category=${filter}`;
     }
-    
+
     fetch(url, {
       method: "GET",
       headers: {
@@ -26,18 +24,6 @@ export default function ProductList({ filter }) {
       }
     })
       .then((response) => response.json())
-      .then((data) => {
-        const promises = [];
-        data.forEach((card) => {
-          promises.push(s3GetObject(card.picture)
-            .then((url) => {
-              card.picture = url;
-              return card;
-            })
-          );
-        });
-        return Promise.all(promises);
-      })
       .then((updatedCards) => {
         setCards(updatedCards);
         setIsLoading(false);
@@ -48,7 +34,7 @@ export default function ProductList({ filter }) {
       });
   }, [filter]);
 
-  
+
   return (
     <div className="productList">
       {isLoading &&

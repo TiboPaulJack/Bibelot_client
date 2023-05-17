@@ -7,20 +7,30 @@ import s3GetObject from "../../utils/S3GetObject.js";
 
 export default function ProductCard(props) {
   const navigate = useNavigate();
-  
+
   const { isLoading, setIsLoading } = props;
   const [likesCount, setLikesCount] = useState(props.like);
+  const [url, setUrl] = useState("")
   const tags = props.tags;
   const id = props.id;
-  
+
 
   const handleClick = () => {
     !isLoading &&
     navigate(`/model/${id}`)
   }
-  
+
+  const getUrlFromS3 = async ( key ) => {
+    const url = await s3GetObject( key )
+      return setUrl(url)
+  }
+
+    useEffect(() => {
+        getUrlFromS3(props.url)
+    }, [props.picture]);
+
   //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST CHARGEE
-  
+
   return (
     <div className={isLoading ? "productCard isLoading" : "productCard"}>
       <div
@@ -33,7 +43,7 @@ export default function ProductCard(props) {
               ? "card__image-img isLoading"
               : "card__image-img"
           }
-          src={props.url}
+          src={url}
           alt=""
         />
       </div>
