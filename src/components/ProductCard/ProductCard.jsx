@@ -26,7 +26,11 @@ export default function ProductCard(props) {
   }
 
     useEffect(() => {
-        getUrlFromS3(props.url).then(() => setIsLoading(false))
+        getUrlFromS3(props.url).then(() => {
+          setInterval(() => {
+            setIsLoading(false)
+          }, 1500)
+        })
     }, []);
 
   //TODO : CHANGER LE STATE LOAD QUAND L IMAGE EST CHARGEE

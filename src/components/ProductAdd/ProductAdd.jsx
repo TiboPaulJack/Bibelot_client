@@ -1,8 +1,6 @@
 import './productAdd.css'
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App.jsx";
-import { createPortal } from "react-dom";
-import Modal from "../Modal/Modal.jsx";
 import s3PutObject from "../../utils/S3PutObject.js";
 
 
@@ -13,10 +11,10 @@ export default function ProductAdd (props)  {
   const baseApi = import.meta.env.VITE_BASE_API
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
-  const { logout, setModalContent, setShowModal, showModal } = useContext(UserContext);
+  const { logout, setModalContent, setShowModal } = useContext(UserContext);
   const { setRefresh } = props;
   const { rendered } = props;
-  const { isLoading ,setIsLoading } = props;
+  const { setIsLoading } = props;
   
 
   
@@ -75,7 +73,7 @@ export default function ProductAdd (props)  {
       setModalContent("Please add at least one tag");
       setShowModal(true);
     }else{
-      /*setIsLoading(true)*/
+     /* setIsLoading(true)*/
       await saveFilesToS3(formData)
     }
   }
