@@ -33,6 +33,8 @@ export default function ProductList({ filter }) {
         setIsLoading(false);
       });
   }, [filter]);
+  
+  console.log(cards)
 
 
   return (

@@ -5,12 +5,13 @@ import UserDeleteConfirm from "../UserDelete/UserDeleteConfirm.jsx";
 import { UserContext } from "../../App.jsx";
 import uploadFile from "../../utils/S3PutObject.js";
 import deleteFile from "../../utils/S3DeleteObject.js";
+import { createPortal } from "react-dom";
+import Modal from "../Modal/Modal.jsx";
 
 export default function UserUpdate({ rendered, userData, setRefresh, userProducts }) {
   
-  
   const baseApi = import.meta.env.VITE_BASE_API
-  const { logout } = useContext(UserContext)
+  const { setModalContent, setShowModal, logout } = useContext(UserContext)
   const [DeleteConfirm, setDeleteConfirm] = useState(false)
   const [_, setForm] = useState({})
   
@@ -18,17 +19,25 @@ export default function UserUpdate({ rendered, userData, setRefresh, userProduct
     setForm(formData)
   }
   
+  
+  const handleModal = () => {
+    setModalContent("modification of profile picture have been disabled to avoid AWS charges.");
+    setShowModal(true);
+  }
+  
   const UpdateUser = async (formData) => {
-    
     
     if(Object.entries(formData).length === 0) {
       return
     }
+    
     if(formData.picture.length !== 0){
-      await deleteFile(userData.picture)
+      /*await deleteFile(userData.picture)
       const file = formData.picture
-      formData.picture = await uploadFile(file)
+      formData.picture = await uploadFile(file)*/
+      return handleModal()
     }
+    
     fetch(baseApi + `/user/update`, {
       method: "PATCH",
       headers: {
@@ -49,6 +58,7 @@ export default function UserUpdate({ rendered, userData, setRefresh, userProduct
   
   
   return (
+    <>
     <div className="userUpdate">
       {
           DeleteConfirm
@@ -70,6 +80,7 @@ export default function UserUpdate({ rendered, userData, setRefresh, userProduct
       
    
     </div>
+    </>
   );
 }
 

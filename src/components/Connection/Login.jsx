@@ -19,7 +19,6 @@ export default function Login(props) {
 
   const login = async (formData) => {
     
-    console.log(baseApi)
     
     const form = new URLSearchParams(formData);
     try {
@@ -48,7 +47,7 @@ export default function Login(props) {
         } , 60 * 60 * 1000) // 1 hour
       }
     } catch (error) {
-      console.log("error :", error.status, error.message);
+      console.error("error :", error.status, error.message);
     }
   };
 

@@ -9,10 +9,12 @@ import ProductUpdate from "../ProductUpdate/ProductUpdate.jsx";
 import { UserContext } from "../../App.jsx";
 import ProductDelete from "../ProductDelete/ProductDelete.jsx";
 import Loader from "../Loader/Loader.jsx";
+import { createPortal } from "react-dom";
+import Modal from "../Modal/Modal.jsx";
 
 export default function UserPage() {
 
-  const { logout } = useContext(UserContext);
+  const { logout, showModal } = useContext(UserContext);
   const baseApi = import.meta.env.VITE_BASE_API
 
   const [userData, setUserData] = useState({});
@@ -39,7 +41,6 @@ export default function UserPage() {
     }).then((data) => {
       setUserData(data.user);
       setUserProducts(data.model);
-      console.log(userProducts,' userProducts')
       setRefresh(false)
     }).catch((error) => {
       console.error(error);
@@ -59,6 +60,10 @@ export default function UserPage() {
   return (
     <>
       <Header rendered={handleRendered} />
+      { showModal && createPortal(
+        <Modal/>,
+        document.body
+      ) }
       <div className="userPage">
         <UserBanner
             rendered={handleRendered}

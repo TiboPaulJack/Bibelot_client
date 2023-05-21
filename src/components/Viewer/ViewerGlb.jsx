@@ -116,7 +116,7 @@ const ViewerGlb = ({ setIsLoaded, data, setProgress }) => {
             }
           );
         } catch (error) {
-          console.log( error );
+          console.error( error );
         }
       }
     };

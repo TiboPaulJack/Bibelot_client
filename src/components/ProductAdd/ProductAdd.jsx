@@ -17,6 +17,7 @@ export default function ProductAdd (props)  {
   const { setRefresh } = props;
   const { rendered } = props;
   const { isLoading ,setIsLoading } = props;
+  
 
   
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function ProductAdd (props)  {
   }
   
   const saveFilesToS3 = async (formData) => {
-    const data = formData.get("data");
+    /*const data = formData.get("data");
     const format = data.name.split('.').pop();
     const size = data.size;
     formData.set("size", size);
@@ -58,7 +59,10 @@ export default function ProductAdd (props)  {
     const pictureKey = await s3PutObject(picture);
     await formData.set("data", dataKey);
     await formData.set("picture", pictureKey);
-    AddProduct(formData);
+    AddProduct(formData);*/
+    
+    setModalContent("This functionality have been disabled to avoid AWS charges.");
+    setShowModal(true);
   }
   
   const handleSubmit = async (e) => {
@@ -71,7 +75,7 @@ export default function ProductAdd (props)  {
       setModalContent("Please add at least one tag");
       setShowModal(true);
     }else{
-      setIsLoading(true)
+      /*setIsLoading(true)*/
       await saveFilesToS3(formData)
     }
   }
@@ -85,10 +89,7 @@ export default function ProductAdd (props)  {
     return (
       
         <div className={ "productAdd" }>
-          { showModal && createPortal(
-            <Modal/>,
-            document.body
-          ) }
+         
           <button className="productAdd__close"
                     onClick={ () => rendered( "UserProducts" ) }>
             X

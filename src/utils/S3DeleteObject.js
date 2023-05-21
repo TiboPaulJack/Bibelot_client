@@ -16,9 +16,8 @@ async function deleteFile(file) {
 
   try {
     const response = await client.send(command)
-    console.log("S3 response",response)
   } catch (error){
-    console.log("S3 err",error)
+    console.error("S3 err",error)
   }
 }
 

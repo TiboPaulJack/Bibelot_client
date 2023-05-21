@@ -19,7 +19,7 @@ async function getFile(file) {
   try {
     return await getSignedUrl( client, command, { expiresIn: 3600 } ) // 1 hour
   } catch (error) {
-    console.log("S3 ERROR",error)
+    console.error("S3 ERROR",error)
   }
 }
 

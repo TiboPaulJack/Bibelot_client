@@ -10,8 +10,7 @@ export default function Modal() {
   const { modalContent, setModalContent } = useContext(UserContext);
   
   const hello = `Hello!
-This website is only for demonstration purposes yet fully functional.
-For the needs of the server you won't be able to upload large 3D models.
+To avoid AWS charges, you wont be upload any files.
 Enjoy your visit!`;
 
   const closeModal = () => {

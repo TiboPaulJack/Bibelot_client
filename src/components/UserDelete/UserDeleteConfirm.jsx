@@ -7,7 +7,6 @@ export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, user
 
   const baseApi = import.meta.env.VITE_BASE_API
   const userId = userData.id
-  console.log(userId)
   
 
   const deleteUserDataInS3 = async () => {
