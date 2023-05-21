@@ -26,16 +26,13 @@ export default function ProductList({ filter }) {
       .then((response) => response.json())
       .then((updatedCards) => {
         setCards(updatedCards);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
-        setIsLoading(false);
       });
   }, [filter]);
   
-  console.log(cards)
-
+console.log(isLoading)
 
   return (
     <div className="productList">
@@ -58,12 +55,14 @@ export default function ProductList({ filter }) {
               liked={card.liked}
               tags={card.tags}
               isLoading={isLoading}
+              setIsLoading={setIsLoading}
             />
           ))}
       {!isLoading &&
         cards &&
           cards.map( ( card ) => (
             <ProductCard
+              
               id={ card.id }
               key={ card.id }
               pseudo={ card.pseudo }
