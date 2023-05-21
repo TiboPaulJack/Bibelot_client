@@ -7,7 +7,7 @@ export default function Register(props) {
 
     const { smallScreenRegister, setSmallScreenRegister } = props
     const { showModal, setShowModal } = useContext(UserContext);
-    const { modalContent, setModalContent } = useContext(UserContext);
+    const {setModalContent } = useContext(UserContext);
     const baseApi = import.meta.env.VITE_BASE_API
     const [errMessage, setErrMessage] = useState("")
     const [errInput, setErrInput] = useState("")
@@ -66,6 +66,10 @@ export default function Register(props) {
     form.reset();
     
   };
+  
+  const handleSpanAccount = () => {
+    setSmallScreenRegister(false)
+  }
 
   return (
     
@@ -148,6 +152,9 @@ export default function Register(props) {
           </div>
           <div className="register__form__button">
             <button type="submit">Register</button>
+            <span className={"spanAccount"} onClick={handleSpanAccount}>
+              Already have an account ?
+            </span>
           </div>
         </form>
       </div>
