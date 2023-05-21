@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 
 import './App.css';
@@ -35,6 +35,7 @@ export const UserContext = createContext({
 
 function App() {
   
+  
   const appHeight = () => {
     const doc = document.documentElement
     doc.style.setProperty('--app-height', `${window.innerHeight}px`)
@@ -49,6 +50,7 @@ function App() {
   const [sideBarActive, setSideBarActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const navigate = useNavigate();
   
   if(showModal){
     document.body.style.overflow = "hidden";
@@ -59,7 +61,6 @@ function App() {
   
   const userCheck = () => {
     tokenCheck()
-    
   }
   
   const setSideBar = () => {
@@ -87,7 +88,7 @@ function App() {
     setUser('');
     setUserId(null);
     localStorage.removeItem('token');
-    window.location = "/";
+    navigate('/')
   }
   
   return (

@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { UserContext } from "../../App.jsx";
 import s3DeleteObject from "../../utils/S3DeleteObject.js";
+import { useNavigate } from "react-router-dom";
 
 
 export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, userData }) {
 
   const baseApi = import.meta.env.VITE_BASE_API
+  const navigate = useNavigate()
   const userId = userData.id
+  const { logout } = useContext(UserContext);
   
 
   const deleteUserDataInS3 = async () => {
@@ -21,31 +24,30 @@ export default function UserDeleteConfirm({ setDeleteConfirm, userProducts, user
       await s3DeleteObject(userData.picture)
     }
   };
-
-
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     fetch(baseApi + `/user/delete/${userId}`, {
       method: "DELETE",
       headers: {
-        'authorization': `Bearer ${ localStorage.getItem( "token" ) } `,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      }).then((res) =>
-      {
-        // TODO: PROBLEME DE STATUT
-        if (res.status === 203) {
-          deleteUserDataInS3().then( () => {
-            localStorage.removeItem( "token" )
-            window.location = "/"
-          })
-        }
+    })
+      .then(() => {
+        return deleteUserDataInS3().then(() => {
+          logout();
+        });
       })
-
-  }
-
-
-
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  
+  
+  
+  
   return (
     <div className="userDeleteConfirm">
 
