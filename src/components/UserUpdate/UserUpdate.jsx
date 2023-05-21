@@ -21,7 +21,7 @@ export default function UserUpdate({ rendered, userData, setRefresh, userProduct
   
   
   const handleModal = () => {
-    setModalContent("modification of profile picture have been disabled to avoid AWS charges.");
+    setModalContent("modification of profile picture has been disabled to avoid AWS charges.");
     setShowModal(true);
   }
   

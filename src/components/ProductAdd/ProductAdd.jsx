@@ -61,7 +61,7 @@ export default function ProductAdd (props)  {
     await formData.set("picture", pictureKey);
     AddProduct(formData);*/
     
-    setModalContent("This functionality have been disabled to avoid AWS charges.");
+    setModalContent("This functionality has been disabled to avoid AWS charges.");
     setShowModal(true);
   }
   
