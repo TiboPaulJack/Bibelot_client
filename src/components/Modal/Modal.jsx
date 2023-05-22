@@ -10,7 +10,7 @@ export default function Modal() {
   const { modalContent, setModalContent } = useContext(UserContext);
   
   const hello = `Hello!
-To avoid AWS charges, you wont be upload any files.
+To avoid AWS charges, you wont be able to upload any files.
 Enjoy your visit!`;
 
   const closeModal = () => {
