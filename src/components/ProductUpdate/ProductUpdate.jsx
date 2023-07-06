@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../App.jsx";
 import "./productUpdate.css";
 
-export default function ProductUpdate({ rendered, id, setRefresh }) {
-  
+export default function ProductUpdate({ rendered, id }) {
+
   // todo : FETCH TAGS TO DISPLAY CURRENT TAGS IN THE INPUT
   const baseApi = import.meta.env.VITE_BASE_API
   const logout = useContext(UserContext).logout;
@@ -20,7 +20,7 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
         filteredData[key] = value;
       }
     }
-    
+
     fetch(baseApi + `/model/${id}`, {
       method: "PATCH",
       headers: {
@@ -30,7 +30,6 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
       body: JSON.stringify(filteredData),
     }).then((res) => {
       if (res.status === 200) {
-        setRefresh(true);
         return res.json();
       } else if (res.status === 401) {
         logout();
@@ -41,15 +40,15 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
     });
     rendered("UserProducts");
   };
-  
-  
+
+
   const handleTags = (e) => {
     const tagInput = document.getElementById("tag");
     setTags([...tags, tagInput.value]);
     tagInput.value = "";
   }
-  
-  
+
+
   return (
     <div className="productUpdate">
       <div className="userpage__title">ProductUpdate</div>
@@ -75,14 +74,14 @@ export default function ProductUpdate({ rendered, id, setRefresh }) {
         </select>
         <label>Tags</label>
         <div className="productAdd__tagsList">
-        
+
         </div>
         <div className="box-tags">
           <input className='productAdd__tags'
                  id="tag"
                  type="text"
                  name="tag"
-          
+
           />
           <button className="addTag-button"
                   type="button"

@@ -11,6 +11,7 @@
     min-width: 100px;
     min-height: 100%;
     -webkit-overflow-scrolling: auto;
+    background-color: var(--bg-color);
 }
 
 .productCard:hover {
@@ -37,8 +38,9 @@
 
 .card__image-img{
     opacity: 1;
-    transition: opacity 5s  ease-in-out; /* ajoutez une transition d'opacité */
+    transition: opacity 5s  ease-in-out;
     max-width: 100%;
+    min-width: 100%;
     min-height: 120px;
     object-fit: contain;
     border-radius: 10px;

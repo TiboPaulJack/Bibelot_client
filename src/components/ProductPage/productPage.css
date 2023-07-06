@@ -8,6 +8,7 @@
     width: 100%;
     height: 90%;
     overflow: scroll;
+    background-color: var(--Portage-Glue);
 }
 
 

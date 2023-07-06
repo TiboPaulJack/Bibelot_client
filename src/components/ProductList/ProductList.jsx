@@ -32,7 +32,6 @@ export default function ProductList({ filter }) {
       });
   }, [filter]);
   
-console.log(isLoading)
 
   return (
     <div className="productList">

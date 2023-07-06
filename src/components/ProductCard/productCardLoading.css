@@ -1,5 +1,6 @@
 .productCard.isLoading{
-
+    min-width: 100px;
+    min-height: 100%;
     border: #eee solid 1px;
     background: var(--bg-color);
     overflow: hidden;
@@ -10,6 +11,8 @@
  }
 .card__image.isLoading{
     background: #eee;
+    max-width: 100%;
+    min-height: 120px;
     background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
     border-radius: 5px;
     background-size: 200% 100%;
@@ -21,15 +24,13 @@
 }
 .card__image-img.isLoading{
 
+    min-width: 100%;
     cursor: none;
-   /* background: #eee;
-    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-    border-radius: 5px;
-    background-size: 200% 100%;
-    animation: 1.5s shine linear infinite;
-
-    aspect-ratio: 1/1;
-    min-width: 119px;*/
+    transition: opacity 5s ease-in-out;
+    max-width: 100%;
+    min-height: 120px;
+    object-fit: contain;
+    margin: 10px auto;
 }
 
 .card__infos-title.isLoading{
@@ -37,7 +38,7 @@
     font-size: 1.4em;
     font-weight: 700;
     min-width: 60px;
-
+    margin-bottom: 5px;
     background: #eee;
     background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
     border-radius: 5px;
@@ -51,6 +52,7 @@
     min-height: 10px;
     min-width: 50px;
     background: #eee;
+    margin-bottom: 15px;
     background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
     border-radius: 5px;
     background-size: 200% 100%;

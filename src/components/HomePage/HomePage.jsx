@@ -10,10 +10,10 @@ import Modal from "../Modal/Modal.jsx";
 
 
 export default function HomePage() {
-  
+
   const { showModal, setShowModal } = useContext(UserContext);
   const { modalContent, setModalContent } = useContext(UserContext);
-  
+
   if(!localStorage.getItem('modalShown')){
     setModalContent("hello")
     setShowModal(true);
@@ -29,7 +29,7 @@ export default function HomePage() {
           )}
           <Hero />
         </div>
-    <Footer />
+      <Footer />
     </>
   )
 }
